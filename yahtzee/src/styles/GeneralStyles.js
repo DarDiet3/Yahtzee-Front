@@ -22,6 +22,9 @@ export const NavButton = styled.div`
     align-items: center;
     justify-content: center;
     border: solid 2px black;
+    cursor: pointer;
+    color: white;
+    font-family: arial;
     & a {
         text-decoration: none;
         font-family: arial;

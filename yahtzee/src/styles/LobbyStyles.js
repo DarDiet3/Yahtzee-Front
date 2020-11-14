@@ -17,14 +17,14 @@ export const OptionHolder = styled.div`
     height: 95%;
     border: solid black 1px;
     padding: 15px;
-`
 
-export const Selector = styled.div`
-    width: 75%;
-    height: 50px;
-    width: 75%;
-    border: solid black 4px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 15px 0;
+    & a {
+        width: 75%;
+        height: 50px;
+        width: 75%;
+        border: solid black 4px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 15px 0;
+    }
 `

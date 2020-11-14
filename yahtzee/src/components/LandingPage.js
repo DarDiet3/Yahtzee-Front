@@ -1,14 +1,16 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 
-import { setCurrentUser } from "../features/gameMetaDataSlice";
+import { setCurrentUser, currentUser } from "../features/gameMetaDataSlice";
 
 import * as L from "../styles/LandingPageStyles";
 
 const LandingPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
+
+    const activeUser = useSelector(currentUser);
 
     const signInGuest = () => {
         const currentUser = {
