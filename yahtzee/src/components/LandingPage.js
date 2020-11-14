@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import { setCurrentUser } from "../features/gameMetaDataSlice";
 
@@ -26,12 +26,8 @@ const LandingPage = () => {
             <L.Div>
                 <L.Modal>
                     <h1>Welcome to Yahtzee!</h1>
-                    <L.Button onClick={() => history.push("/signup")}>
-                        Sign Up
-                    </L.Button>
-                    <L.Button onClick={() => history.push("/login")}>
-                        Log In
-                    </L.Button>
+                    <Link to="/signup">Sign Up</Link>
+                    <Link to="/login">Log In</Link>
                     <L.Button onClick={() => signInGuest()}>
                         Continue as Guest
                     </L.Button>
