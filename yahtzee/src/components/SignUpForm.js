@@ -1,7 +1,10 @@
 import React, { useReducer } from "react";
 import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
+
 import { signupUser, loginUser, VerifyUser} from "../services/api_helper";
+import { setCurrentUser } from "../features/gameMetaDataSlice";
+
 import * as L from "../styles/LandingPageStyles";
 
 const SignupForm = () => {
@@ -37,7 +40,7 @@ const SignupForm = () => {
         e.preventDefault();
         const currentUser = await signupUser(signupData);
         console.log(currentUser)
-        // dispatch(setCurrentUser(currentUser));
+        dispatch(setCurrentUser(currentUser));
         history.push("/") //TODO: Redirect to profile
     }
     

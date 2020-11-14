@@ -13,6 +13,7 @@ const currentUserId = () => {
 }
 
 const currentUserData = currentUserId();
+
 export const gameMetaDataSlice = createSlice({
     name: "gameMetaData",
     initialState: {

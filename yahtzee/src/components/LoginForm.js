@@ -2,6 +2,9 @@ import React, { useReducer } from "react";
 import { loginUser } from "../services/api_helper";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+
+import { setCurrentUser } from "../features/gameMetaDataSlice";
+
 import * as L from "../styles/LandingPageStyles";
 
 
@@ -23,6 +26,7 @@ const LoginForm = () => {
     const HandleLogin = async (e, loginData) => {
         e.preventDefault();
         const currentUser = await loginUser(loginData);
+        dispatch(setCurrentUser(currentUser));
         history.push("/") 
     }
     
