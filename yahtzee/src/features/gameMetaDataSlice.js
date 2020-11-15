@@ -32,8 +32,8 @@ export const gameMetaDataSlice = createSlice({
             state.currentUser = action.payload;
         },
         addRoll: (state, action) => {
-            console.log(action.payload)
-            // state.diceRolled[action.payload]
+            state.diceRolled[action.payload] += 1;
+
         }
     }
 })

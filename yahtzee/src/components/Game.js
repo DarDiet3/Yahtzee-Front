@@ -73,7 +73,6 @@ const Game = () => {
         console.log(dice)
         newList.map(die => {
             if(!die.locked){
-                console.log(die);
                 die.resource = newDiceResource[die.id - 1]
             }
         })
