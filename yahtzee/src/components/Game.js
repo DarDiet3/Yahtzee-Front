@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCanBuild, setDice } from "../features/gameBoardDataSlice";
 
 import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
+import { toggleCanBuild, setDice } from "../features/gameBoardDataSlice";
+
+import { diceRolledList } from "../features/gameMetaDataSlice";
+import { addRoll } from "../features/gameMetaDataSlice";
 
 
 import * as G from "../styles/GameBoardStyles";
@@ -48,8 +51,11 @@ const Game = () => {
     // To alow for update on Roll
     const diceCopy = Object.assign({}, dice);
     const [DiceData, setDiceData] = useState(diceCopy)
-    
+    const [rollCount, setRollCount] = useState(0)
+
     const roll = () => {
+        setRollCount(rollCount + 1);
+        console.log(rollCount)
         const dice1 = Math.floor(Math.random() * 6);
         const dice2 = Math.floor(Math.random() * 6);
         const dice3 = Math.floor(Math.random() * 6);
@@ -58,6 +64,11 @@ const Game = () => {
         const dice6 = Math.floor(Math.random() * 6);
 
         let newDiceResource = [resources[dice1], resources[dice2], resources[dice3], resources[dice4], resources[dice5], resources[dice6]];
+        // Add to total dice rolled count
+        newDiceResource.map(die => {
+            dispatch(addRoll(die))
+        })
+
         let newList = JSON.parse(JSON.stringify(dice)); //https://stackoverflow.com/questions/42523881/how-to-clone-a-javascript-array-of-objects
         console.log(dice)
         newList.map(die => {
@@ -67,7 +78,7 @@ const Game = () => {
             }
         })
 
-        dispatch(setDice(newList))
+        dispatch(setDice(newList));
     }
 
     const toggleLock = (index) => {
@@ -91,7 +102,7 @@ const Game = () => {
                     <G.Die className={DiceData[3].resource} onClick={() => toggleLock(3)}> {DiceData[3].resource} </G.Die>
                     <G.Die className={DiceData[4].resource} onClick={() => toggleLock(4)}> {DiceData[4].resource} </G.Die>
                     <G.Die className={DiceData[5].resource} onClick={() => toggleLock(5)}> {DiceData[5].resource} </G.Die>
-                    <button onClick={() => roll()}>Roll</button>
+                    <button onClick={rollCount < 3 ? () => roll() : undefined}>Roll</button>
                 </G.DiceHolder>
                 <G.Board>
                     <button onClick={() => toggleCanBuild("road", 2)}>Toggle</button>
