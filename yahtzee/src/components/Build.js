@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
 import { toggleCanBuild, setDice } from "../features/gameBoardDataSlice";
+import { setBuild } from "../features/gameMetaDataSlice";
 
 import * as A from "../styles/ActionBarStyles"
 
@@ -19,7 +20,6 @@ const Build = () => {
     //Remove set aside dice
     let availableResources = JSON.parse(JSON.stringify(dice));
     availableResources = availableResources.filter(resource => resource.available)
-    console.log(availableResources);
 
     const [resourceCount, setResourceCount] = useState({
         rock: 0,
@@ -28,6 +28,8 @@ const Build = () => {
         brick: 0, 
         wood: 0
     });
+    const [locationView, setLocationView] = useState(false)
+
     //Set counts on mount
     useEffect(() => {
         let counts = {...resourceCount};
@@ -70,6 +72,62 @@ const Build = () => {
                 return false;
         }
     }
+
+    //Check for lcations able to build
+    const checkBuild = (type) => {
+        dispatch(setBuild(true));
+        roadBuildCheck()
+    }
+
+    const roadBuildCheck = () => {
+        let roadList = JSON.parse(JSON.stringify(roads));
+        let builtRoadList = roadList.filter(road => road.built);
+        
+        builtRoadList.map(road => {
+            switch(road.id) {
+                case 1:
+                    toggleRoadBuild(2, roadList);
+                    toggleRoadBuild(3, roadList);
+                    break;
+                case 3:
+                    toggleRoadBuild(4, roadList);
+                    break;
+                case 4:
+                    toggleRoadBuild(5, roadList);
+                    toggleRoadBuild(6, roadList);
+                    break;
+                case 8:
+                    toggleRoadBuild(9, roadList);
+                    toggleRoadBuild(13, roadList);
+                    break;
+                case 6:
+                case 7:
+                case 9:
+                case 10:
+                case 11:
+                case 13:
+                case 14:
+                case 15:
+                    toggleRoadBuild((road.id + 1), roadList);
+                    break;
+                default:
+                    break;
+            }
+        })
+    }
+    const toggleRoadBuild = (idx, roadList) => {
+        roadList[idx - 1].canBuild = roadList[idx - 1].built ? "" : true;
+    }
+
+    const handleSelect = (type) => {
+        setLocationView(true);
+        checkBuild(type);
+    }
+
+    const handleBuild = (e,) => {
+        e.preventDefault();
+        dispatch(setBuild(false))
+    }
     
 
     return (
@@ -88,12 +146,19 @@ const Build = () => {
                                     type="radio"
                                     name="buildable"
                                     value={`${type}`}
-                                    disabled = {canBuild ? "" : "disabled"}
+                                    disabled={canBuild ? "" : "disabled"}
+                                    onClick={() => handleSelect(type)}
                                 />
                                 {type}
                             </label>
                         })}
                     </fieldset>
+                    {locationView ? 
+                        <p>Select Location</p>
+                        
+                    : 
+                    <></>  
+                }
                 </A.BuildForm>
             </A.MainDiv>
         </div>

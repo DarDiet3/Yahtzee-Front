@@ -89,7 +89,14 @@ export const gameMetaDataSlice = createSlice({
             }
         ], 
         totalPoints: 0,
-        trades: 0
+        trades: 0,
+        buildCounts: {
+            knight: 0,
+            settlement: 0,
+            city: 0,
+            road: 0
+        },
+        building: false,
     },
     reducers: {
         setCurrentUser: (state, action) => {
@@ -104,16 +111,20 @@ export const gameMetaDataSlice = createSlice({
         },
         addTrade: (state, action) => {
             state.trades += action.payload;
+        },
+        setBuild: (state, action) => {
+            state.building = action.payload;
         }
     }
 })
 
-export const { setCurrentUser, addRoll, addRoundPoints, addTrade } = gameMetaDataSlice.actions;
+export const { setCurrentUser, addRoll, addRoundPoints, addTrade, setBuild } = gameMetaDataSlice.actions;
 
 export const currentUser = state => state.gameMetaData.currentUser;
 export const diceRolledList = state => state.gameMetaData.diceRolled;
 export const roundPoints = state => state.gameMetaData.roundPoints;
 export const totalPoints = state => state.gameMetaData.totalPoints;
+export const building = state => state.gameMetaData.building;
 export const gameMetaData = state => state.gameMetaData;
 
 

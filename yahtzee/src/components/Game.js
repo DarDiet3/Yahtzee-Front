@@ -6,7 +6,7 @@ import Hexagon from "react-hexagon";
 import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
 import { toggleCanBuild, setDice } from "../features/gameBoardDataSlice";
 
-import { diceRolledList, roundPoints, totalPoints } from "../features/gameMetaDataSlice";
+import { diceRolledList, roundPoints, totalPoints, building } from "../features/gameMetaDataSlice";
 import { addRoll, addRoundPoints  } from "../features/gameMetaDataSlice";
 
 
@@ -26,6 +26,7 @@ const Game = () => {
     const resources = ["rock", "wheat", "sheep", "brick", "wood", "gold"];
     const scoreBoard = useSelector(roundPoints);
     const total = useSelector(totalPoints);
+    const buildState = useSelector(building);
 
     //Functions
     const toggleCanBuild = (type, id) => {
