@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
+import Hexagon from "react-hexagon";
 
 import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
 import { toggleCanBuild, setDice } from "../features/gameBoardDataSlice";
@@ -53,7 +54,7 @@ const Game = () => {
     const diceCopy = JSON.parse(JSON.stringify(dice));
     const [DiceData, setDiceData] = useState(diceCopy)
     const [rollCount, setRollCount] = useState(0)
-
+    
     const roll = () => {
         setRollCount(rollCount + 1);
         console.log(rollCount)
@@ -96,17 +97,40 @@ const Game = () => {
         <G.Div>
             <G.Table>
                 <G.DiceHolder>
+                    <G.Dice>
                     {DiceData.map((dice, index) => {
                         let active = dice.locked ? "locked" : "";
                         let classlist = classNames(`${dice.resource}`, `${active}`);
                         dieIndex +=1;
-                        return <G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)}>{dice.resource}</G.Die>
+                        return <G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)} key={index}>{dice.resource}</G.Die>
                     })}
+                    </G.Dice>
                     <button onClick={rollCount < 3 ? () => roll() : undefined}>Roll</button>
                 </G.DiceHolder>
                 <G.Board>
-                    <button onClick={() => toggleCanBuild("road", 2)}>Toggle</button>
+                    {hexes.map((hex, index) => {
+                        const classList = classNames(`hex_${hex.id}`, `${hex.resource}`, "hex");
+                        const hexStyles = {
+                            strokeWidth: "25",
+                            stroke: "green",
+                            fill: hex.resource === "wheat" ? "tan" : 
+                                hex.resource === "brick" ? "red" :
+                                hex.resource === "wood" ? "brown" :
+                                hex.resource === "rock" ? "darkgray" : 
+                                hex.resource === "sheep" ? "white" :
+                                hex.resource === "desert" ? "gold" : "lightblue"
+                        };
+                        return(
+                            <Hexagon
+                                key={index}
+                                className={classList}
+                                hexProps={{className:`${hex.resource}`}}
+                                style={hexStyles}
+                                ></Hexagon>
+                        )
+                    })}
                 </G.Board>
+                <button onClick={() => toggleCanBuild("road", 2)}>Toggle</button>
             </G.Table>
         </G.Div>
 

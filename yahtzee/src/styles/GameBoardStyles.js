@@ -16,32 +16,134 @@ export const Div = styled.div`
 export const Board = styled.div`
     padding: 25px;
     display: grid;
-    min-width: 525px;
-    min-height: 480px;
-    width: 650px;
-    height: 594px;
-    grid-template-columns: repeat(21, minmax(0, 2.25%));
-    grid-template-rows: repeat(33, minmax(0, 2.25%));
-    gap: .875% 2.75%;
+    width: 450px;
+    height: 411px;
+    grid-template-columns: repeat(13, minmax(0, 3.25%));
+    grid-template-rows: repeat(20, minmax(0, 3.25%));
+    gap: 1.27% 3.75%;
     background: lightblue;
     box-shadow: 0px 0px 5px navy;
     border-radius: 25px;
+
+
+    // Set Up Grid Rows
+
+    & .city_1, .city_2, .knight_1, .knight_2{
+        grid-row: 3;
+    }
+
+    & .road_2, .road_5, .hex_1, .hex_2{
+        grid-row: 5;
+    }
+
+    & .road_0, .road_1, .road_2, .road_3, .road_4, .road_5, .road_6 {
+        grid-row: 8;
+    }
+
+    & .set_1, .set_2, .set_3, .knight_5, .knight_6 {
+        grid-row: 9;
+    }
+
+    & .road_7, .hex_3, .hex_6, .hex_7{
+        grid-row: 11;
+    }
+
+    & .road_8, .road_9, .road_10, .road_11, .road_12 {
+        grid-row: 14;
+    }
+
+    & .set_4, .set_5, .set_6, .knight_4, .knight_5 {
+        grid-row: 15;
+    }
+
+    & .road_13, .hex_4, .hex_5{
+        grid-row: 17;
+    }
+
+    & .road_14, .road_15, .road_16 {
+        grid-row: 20;
+    }
+    & .city_3, .city_4 {
+        grid-row: 20;
+    }
+
+    // Set Up Grid columns
+
+    & .set_3, .road_7{
+        grid-column: 1;
+    }
+
+    & .road_6, .road_8 {
+        grid-column: 2;
+    }
+
+    & .city_2, .set_4, .road_5, .road_13, .knight_3, .hex_3 {
+        grid-column: 3;
+    }
+
+    & .road_4, .road_9, .road_14 {
+        grid-column: 4;
+    }
+
+    & .city_3, .set_2, .knight_2, .knight_4, .hex_2, .hex_4 {
+        grid-column: 5;
+    }
+
+    & .road_3, .road_10, .road_15 {
+        grid-column: 6;
+    }
+
+    & .city_1, .set_5, .road_2, .hex_7 {
+        grid-column: 7;
+    }
+
+    & .road_1, .road_11, .road_16 {
+        grid-column: 8;
+    }
+
+    & .city_4, .set_1, .knight_1, .knight_5, .hex_1, .hex_5 {
+        grid-column: 9;
+    }
+
+    & .road_0, .road_12{
+        grid-column: 10;
+    }
+
+    & .set_6, .hex_6, .knight_6{
+        grid-column: 11;
+    }
+    & .hex {
+        width: 925%;
+        justify-self: center;
+        align-self: center;
+    }
 `
 export const Table = styled.div`
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     height: 98%;
     width: 55%;
     background: #2F3D41;
 `
 
 export const DiceHolder = styled.div`
-    height: 85px;
+    height: 100px;
+    width: 25%;
     padding: 0 15px;
     display: flex;
-    align-itmes: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+export const Dice = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    width: 60%;
     justify-content: space-between;
+    align-items: center;
 `
 
 export const Die = styled.div`
