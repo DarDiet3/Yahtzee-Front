@@ -248,6 +248,14 @@ export const gameBoardDataSlice = createSlice({
                 points: 5,
                 resource: "brick",
                 jokerPlayed: false
+            },
+            {
+                id: 6,
+                build: false,
+                canBuild: false, 
+                points: 6,
+                resource: "any",
+                jokerPlayed: false
             }
         ],
         resourceDice: [

@@ -19,11 +19,13 @@ export const Board = styled.div`
     width: 450px;
     height: 411px;
     grid-template-columns: repeat(13, minmax(0, 3.25%));
-    grid-template-rows: repeat(20, minmax(0, 3.25%));
+    grid-template-rows: repeat(21, minmax(0, 3.25%));
     gap: 1.27% 3.75%;
     background: lightblue;
     box-shadow: 0px 0px 5px navy;
     border-radius: 25px;
+    align-items: center;
+    justify-content: center;
 
 
     // Set Up Grid Rows
@@ -40,7 +42,7 @@ export const Board = styled.div`
         grid-row: 8;
     }
 
-    & .set_1, .set_2, .set_3, .knight_5, .knight_6 {
+    & .set_1, .set_2, .set_3, .knight_3, .knight_6 {
         grid-row: 9;
     }
 
@@ -64,7 +66,7 @@ export const Board = styled.div`
         grid-row: 20;
     }
     & .city_3, .city_4 {
-        grid-row: 20;
+        grid-row: 21;
     }
 
     // Set Up Grid columns
@@ -173,4 +175,47 @@ export const Die = styled.div`
     &.locked {
         box-shadow: 0px 0px 8px 4px red;
     }
+`
+
+export const KnightHolder = styled.div`
+    height: 30px;
+    width: 30px;
+    margin-left: -7.5px;
+    color: gray;
+    filter: drop-shadow(0 0 3px navy);
+`
+
+export const SettlementHolder = styled.div`
+    height: 30px;
+    width: 30px;
+    font-size: 28px;
+    margin-left: -7.5px;
+    filter: drop-shadow(0 0 3px navy);
+    color: #F5F5F5;
+`
+export const CityHolder = styled.div`
+    height: 40px;
+    width: 40px;
+    font-size: 28px;
+    margin-left: -10px;
+    filter: drop-shadow(0 0 3px navy);
+    color: #F5F5F5;
+`
+
+export const IconText = styled.p`
+    text-align: center;
+    font-size: 16px;
+    z-index: 1;
+    padding-top: 10.5px;
+
+    &.city {
+        font-weight: bold;
+        background: #F5F5F5;
+        height: 20px;
+        width: 20px;
+        margin: 0;
+        margin-top: 15px;
+        padding: 0;
+    }
+    
 `
