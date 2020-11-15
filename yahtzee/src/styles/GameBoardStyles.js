@@ -68,4 +68,7 @@ export const Die = styled.div`
     &.gold {
         background: gold;
     }
+    &.locked {
+        box-shadow: 0px 0px 8px 4px red;
+    }
 `

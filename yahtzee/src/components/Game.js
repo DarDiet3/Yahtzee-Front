@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import classNames from "classnames";
 
 import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
 import { toggleCanBuild, setDice } from "../features/gameBoardDataSlice";
@@ -49,7 +50,7 @@ const Game = () => {
     }
 
     // To alow for update on Roll
-    const diceCopy = Object.assign({}, dice);
+    const diceCopy = JSON.parse(JSON.stringify(dice));
     const [DiceData, setDiceData] = useState(diceCopy)
     const [rollCount, setRollCount] = useState(0)
 
@@ -90,17 +91,17 @@ const Game = () => {
         setDiceData(dice)
     }, [dice])
 
-
+    let dieIndex = 0;
     return (
         <G.Div>
             <G.Table>
                 <G.DiceHolder>
-                    <G.Die className={DiceData[0].resource} onClick={() => toggleLock(0)}> {DiceData[0].resource} </G.Die>
-                    <G.Die className={DiceData[1].resource} onClick={() => toggleLock(1)}> {DiceData[1].resource} </G.Die>
-                    <G.Die className={DiceData[2].resource} onClick={() => toggleLock(2)}> {DiceData[2].resource} </G.Die>
-                    <G.Die className={DiceData[3].resource} onClick={() => toggleLock(3)}> {DiceData[3].resource} </G.Die>
-                    <G.Die className={DiceData[4].resource} onClick={() => toggleLock(4)}> {DiceData[4].resource} </G.Die>
-                    <G.Die className={DiceData[5].resource} onClick={() => toggleLock(5)}> {DiceData[5].resource} </G.Die>
+                    {DiceData.map((dice, index) => {
+                        let active = dice.locked ? "locked" : "";
+                        let classlist = classNames(`${dice.resource}`, `${active}`);
+                        dieIndex +=1;
+                        return <G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)}>{dice.resource}</G.Die>
+                    })}
                     <button onClick={rollCount < 3 ? () => roll() : undefined}>Roll</button>
                 </G.DiceHolder>
                 <G.Board>
