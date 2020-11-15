@@ -189,18 +189,27 @@ const Game = () => {
                     {cities.map((city, index)=> {
                         const classList = classNames(`city_${city.id}`, "city");
                         return(
-                            <G.IconText
-                                key={index}
-                                className={classList}
-                            >
+                            <G.IconText key={index} className={classList}>
                                 {city.points}
                             </G.IconText>
                         )
                     })}
-               
+                    {roads.map((road, index) => {
+                        const classList = classNames(`road_${road.id}`, "road");
+                        return(
+                            <G.RoadHolder key={index} className={classList}>
+                                {road.built ? 
+                                   <svg width="400" height="180"><rect x="0" y="0" width="35" height="10" fill="currentColor"/> </svg> 
+                                :
+                                    <svg width="400" height="180"><rect x="0" y="0" width="35" height="10" fill="gray" stroke="black" strokeWidth="3"/> </svg> 
+                                }
+                            </G.RoadHolder>
+                        )
+                    })}
                
                 </G.Board>
                 <button onClick={() => toggleCanBuild("road", 2)}>Toggle</button>
+                
             </G.Table>
         </G.Div>
 

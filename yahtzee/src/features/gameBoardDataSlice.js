@@ -131,12 +131,6 @@ export const gameBoardDataSlice = createSlice({
                 canBuild: false
             },
             {
-                id: 17,
-                points: 1,
-                built: false,
-                canBuild: false
-            },
-            {
                 id: 0,
                 points: 0,
                 built: true,

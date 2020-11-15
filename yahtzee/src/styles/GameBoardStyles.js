@@ -38,7 +38,7 @@ export const Board = styled.div`
         grid-row: 5;
     }
 
-    & .road_0, .road_1, .road_2, .road_3, .road_4, .road_5, .road_6 {
+    & .road_0, .road_1, .road_3, .road_4, .road_6 {
         grid-row: 8;
     }
 
@@ -216,6 +216,23 @@ export const IconText = styled.p`
         margin: 0;
         margin-top: 15px;
         padding: 0;
+    }
+    
+`
+
+export const RoadHolder = styled.div`
+    height: 15px;
+    width: 40px;
+
+    &.road_2, &.road_5, &.road_7, &.road_13{
+        transform: rotate(90deg) translate( 10px, 15px); 
+    }
+
+    &.road_0, &.road_3, &.road_6, &.road_9, &.road_11, &.road_15{
+        transform: rotate(-30deg) translateY(-4px);
+    }
+    &.road_1, &.road_4, &.road_8, &.road_10, &.road_12, &.road_14, &.road_16{
+        transform: rotate(30deg) translate(-10px, 9px);
     }
     
 `
