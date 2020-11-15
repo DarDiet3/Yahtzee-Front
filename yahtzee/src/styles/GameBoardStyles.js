@@ -126,7 +126,7 @@ export const Table = styled.div`
     align-items: center;
     justify-content: space-around;
     height: 98%;
-    width: 55%;
+    width: 90%;
     background: #2F3D41;
 `
 
@@ -234,5 +234,68 @@ export const RoadHolder = styled.div`
     &.road_1, &.road_4, &.road_8, &.road_10, &.road_12, &.road_14, &.road_16{
         transform: rotate(30deg) translate(-10px, 9px);
     }
+    
+`
+
+export const ScoreTrackGrid = styled.div`
+    height: 350px;
+    width: 350px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    background: white;
+
+    & .score_1, .score_2, .score_3, .score_4, .score_5{
+        grid-row: 1;
+    }
+    & .score_6 {
+        grid-row: 2;
+        border-left: solid black 2px;
+        margin-left: -1px;
+    }
+    & .score_7, .score_8, .score_9, .score_10, .score_11 {
+        grid-row: 3;
+    }
+    & .score_12 {
+        grid-row: 4;
+        border-right: solid black 2px;
+        margin-right: -1px;
+    }
+    & .score_13, .score_14, .score_15 {
+        grid-row: 5;
+    }
+
+    & .score_1, .score_11, .score_12, .score_13{
+        grid-column: 1;
+    }
+    & .score_2, .score_10, .score_14{
+        grid-column: 2;
+    }
+    & .score_3, .score_9, .score_15{
+        grid-column: 3;
+    }
+    & .score_4, .score_8 {
+        grid-column: 4;
+    }
+    & .score_5, .score_6, .score_7 {
+        grid-column: 5;
+    }
+    & .total {
+        grid-row: 5;
+        grid-column: 5;
+        width: 125%;
+        margin-left: -25%;
+    }
+    & .score {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+    }
+`
+export const GridScore = styled.div`
+    height: 98%;
+    width: 98%;
+    border: solid black 1px;
     
 `

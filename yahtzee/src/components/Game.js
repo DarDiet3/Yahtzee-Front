@@ -6,8 +6,8 @@ import Hexagon from "react-hexagon";
 import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
 import { toggleCanBuild, setDice } from "../features/gameBoardDataSlice";
 
-import { diceRolledList } from "../features/gameMetaDataSlice";
-import { addRoll } from "../features/gameMetaDataSlice";
+import { diceRolledList, roundPoints, totalPoints } from "../features/gameMetaDataSlice";
+import { addRoll, addRoundPoints  } from "../features/gameMetaDataSlice";
 
 
 import * as G from "../styles/GameBoardStyles";
@@ -22,6 +22,8 @@ const Game = () => {
     let knights = useSelector(knightsList);
     const dice = useSelector(diceList);
     const resources = ["rock", "wheat", "sheep", "brick", "wood", "gold"];
+    const scoreBoard = useSelector(roundPoints);
+    const total = useSelector(totalPoints);
 
     //Functions
     const toggleCanBuild = (type, id) => {
@@ -50,7 +52,15 @@ const Game = () => {
 
     }
 
-    // To alow for update on Roll
+    const handleTrade = (type, id) => {
+
+    }
+
+    const handleJoker = (type, id) => {
+        
+    }
+    //===== Roll =====
+    // To al/ow for update on Roll
     const diceCopy = JSON.parse(JSON.stringify(dice));
     const [DiceData, setDiceData] = useState(diceCopy)
     const [rollCount, setRollCount] = useState(0)
@@ -107,6 +117,15 @@ const Game = () => {
                     </G.Dice>
                     <button onClick={rollCount < 3 ? () => roll() : undefined}>Roll</button>
                 </G.DiceHolder>
+                <G.ScoreTrackGrid>
+                    {scoreBoard.map((round, index) => {
+                        const classList = classNames(`score_${round.round}`, "score");
+                        return <G.GridScore key={index} className={classList}>
+                            {round.points}
+                        </G.GridScore>
+                    })}
+                    <G.GridScore className={classNames("total", "score")}>{total}</G.GridScore>
+                </G.ScoreTrackGrid>
                 <G.Board>
                     {hexes.map((hex, index) => {
                         const classList = classNames(`hex_${hex.id}`, `${hex.resource}`, "hex");
