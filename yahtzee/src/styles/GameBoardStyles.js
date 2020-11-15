@@ -253,6 +253,10 @@ export const RoadHolder = styled.div`
     &.road_1, &.road_4, &.road_8, &.road_10, &.road_12, &.road_14, &.road_16{
         transform: rotate(30deg) translate(-10px, 9px);
     }
+
+    &.canBuild {
+        filter: drop-shadow(0 0 6px yellow); 
+    }
     
 `
 

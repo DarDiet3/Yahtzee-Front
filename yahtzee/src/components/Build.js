@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
-import { toggleCanBuild, setDice } from "../features/gameBoardDataSlice";
+import { toggleCanBuild, setDice, setRoadList } from "../features/gameBoardDataSlice";
 import { setBuild } from "../features/gameMetaDataSlice";
 
 import * as A from "../styles/ActionBarStyles"
@@ -114,9 +114,12 @@ const Build = () => {
                     break;
             }
         })
+        dispatch(setRoadList(roadList));
+        console.log(roadList)
     }
     const toggleRoadBuild = (idx, roadList) => {
-        roadList[idx - 1].canBuild = roadList[idx - 1].built ? "" : true;
+        roadList[idx - 1].canBuild = roadList[idx - 1].built ? false : true;
+        //can't build at a site that is already built
     }
 
     const handleSelect = (type) => {

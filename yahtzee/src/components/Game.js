@@ -228,7 +228,8 @@ const Game = () => {
                         )
                     })}
                     {roads.map((road, index) => {
-                        const classList = classNames(`road_${road.id}`, "road");
+                        const canBuild = (buildState && road.canBuild) ? "canBuild" : undefined;
+                        const classList = classNames(`road_${road.id}`, "road", `${canBuild}`);
                         return(
                             <G.RoadHolder key={index} className={classList}>
                                 {road.built ? 

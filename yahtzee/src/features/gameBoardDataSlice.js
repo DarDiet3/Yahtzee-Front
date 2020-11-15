@@ -67,7 +67,7 @@ export const gameBoardDataSlice = createSlice({
             {
                 id: 6,
                 points: 1,
-                built: false,
+                built: true,
                 canBuild: false
             },
             {
@@ -311,11 +311,14 @@ export const gameBoardDataSlice = createSlice({
             console.log("GotHere")
             console.log(action.payload)
             state.resourceDice = action.payload;
+        },
+        setRoadList: (state, action) => {
+            state.roads = action.payload;
         }
     }
 })
 
-export const { toggleStateBuild, setDice } = gameBoardDataSlice.actions;
+export const { toggleStateBuild, setDice, setRoadList } = gameBoardDataSlice.actions;
 
 export const data = state => state.gameBoardData;
 export const hexList = state => state.gameBoardData.hexList;
