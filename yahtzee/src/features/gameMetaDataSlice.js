@@ -18,6 +18,13 @@ export const gameMetaDataSlice = createSlice({
     name: "gameMetaData",
     initialState: {
         currentUser: currentUserData,
+        diceRolled: {
+            rock: 0,
+            wheat: 0,
+            sheep: 0,
+            brick: 0, 
+            wood: 0
+        }
     },
     reducers: {
         setCurrentUser: (state, action) => {

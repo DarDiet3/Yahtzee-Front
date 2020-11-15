@@ -35,12 +35,6 @@ export const gameBoardDataSlice = createSlice({
         ],
         roads: [
             {
-                id: 0,
-                points: 1,
-                built: true,
-                canBuild: false
-            },
-            {
                 id: 1,
                 points: 1,
                 built: false,
@@ -135,12 +129,19 @@ export const gameBoardDataSlice = createSlice({
                 points: 1,
                 built: false,
                 canBuild: false
-            },{
+            },
+            {
                 id: 17,
                 points: 1,
                 built: false,
                 canBuild: false
-            }
+            },
+            {
+                id: 0,
+                points: 0,
+                built: true,
+                canBuild: false
+            },
 
         ],
         cities: [
@@ -248,11 +249,78 @@ export const gameBoardDataSlice = createSlice({
                 resource: "brick",
                 jokerPlayed: false
             }
-        ] 
+        ],
+        resourceDice: [
+            {
+                id: 1,
+                resource: "rock",
+                locked: false,
+                toBuild: false,
+                available: true
+            },
+            {
+                id: 2,
+                resource: "wheat",
+                locked: false,
+                toBuild: false,
+                available: true
+            },
+            {
+                id: 3,
+                resource: "sheep",
+                locked: false,
+                toBuild: false,
+                available: true
+            },
+            {
+                id: 4,
+                resource: "brick",
+                locked: false,
+                toBuild: false,
+                available: true
+            },
+            {
+                id: 5,
+                resource: "wood",
+                locked: false,
+                toBuild: false,
+                available: true
+            },
+            {
+                id: 6,
+                resource: "gold",
+                locked: false,
+                toBuild: false,
+                available: true
+            }
+        ]
     },
     reducers: {
-        setCurrentUser: (state, action) => {
-            state.currentUser = action.payload;
+        toggleStateBuild: (state, action) => {
+            const list = action.payload.item;
+            const id = action.payload.id;
+            const newRoad = state.road;
+            
+            // state[list][id - 1]
+            console.log(newRoad)
+            console.log()
+        },
+        setDice: (state, action) => {
+            console.log("GotHere")
+            console.log(action.payload)
+            state.resourceDice = action.payload;
         }
     }
 })
+
+export const { toggleStateBuild, setDice } = gameBoardDataSlice.actions;
+
+export const data = state => state.gameBoardData;
+export const hexList = state => state.gameBoardData.hexList;
+export const roadsList = state => state.gameBoardData.roads;
+export const citiesList = state => state.gameBoardData.cities;
+export const settlementsList = state => state.gameBoardData.settlements;
+export const knightsList = state => state.gameBoardData.knights;
+export const diceList = state => state.gameBoardData.resourceDice;
+
+export default gameBoardDataSlice.reducer;
