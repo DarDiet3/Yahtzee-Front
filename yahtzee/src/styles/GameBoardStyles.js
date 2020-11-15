@@ -129,15 +129,24 @@ export const Table = styled.div`
     width: 90%;
     background: #2F3D41;
 `
-
-export const DiceHolder = styled.div`
-    height: 100px;
+export const LeftBar = styled.div`
     width: 25%;
+    height: 100%;
+    border: solid blue 2px;
+    display: flex;
+    flex-direction column;
+    align-items: center;
+    justify-content: space-between;
+`
+export const DiceHolder = styled.div`
+    height: 35%;
+    width: 100%;
     padding: 0 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: solid red 2px;
 `
 export const Dice = styled.div`
     display: flex;
@@ -177,6 +186,12 @@ export const Die = styled.div`
     }
 `
 
+export const ActionArea = styled.div`
+    height: 60%;
+    width: 100%;
+    background: white;
+    border: solid 4px black;
+`
 export const KnightHolder = styled.div`
     height: 30px;
     width: 30px;

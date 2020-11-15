@@ -11,6 +11,7 @@ import { addRoll, addRoundPoints  } from "../features/gameMetaDataSlice";
 
 
 import * as G from "../styles/GameBoardStyles";
+import Trade from "./Trade";
 
 const Game = () => {
     // State Variables
@@ -53,7 +54,7 @@ const Game = () => {
     }
 
     const handleTrade = (type, id) => {
-
+        setActionView("trade");
     }
 
     const handleJoker = (type, id) => {
@@ -65,7 +66,7 @@ const Game = () => {
     const diceCopy = JSON.parse(JSON.stringify(dice));
     const [DiceData, setDiceData] = useState(diceCopy)
     const [rollCount, setRollCount] = useState(0)
-    const [resourcesToBuild, setResourcesToBuild] = useState(0)
+    const [actionView, setActionView] = useState("trade")
     
     const roll = () => {
         setRollCount(rollCount + 1);
@@ -107,20 +108,25 @@ const Game = () => {
     return (
         <G.Div>
             <G.Table>
-                <G.DiceHolder>
-                    <G.Dice>
-                    {DiceData.map((dice, index) => {
-                        let active = dice.locked ? "locked" : "";
-                        let classlist = classNames(`${dice.resource}`, `${active}`);
-                        dieIndex +=1;
-                        return <G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)} key={index}>{dice.resource}</G.Die>
-                    })}
-                    </G.Dice>
-                    <button onClick={rollCount < 3 ? () => roll() : undefined}>Roll</button>
-                    <button onClick={() => handleBuild()}>Let's Build</button>
-                    <button onClick={() => handleTrade()}>Let's Trade</button>
-                    <button onClick={() => handleJoker()}>Joker</button>
-                </G.DiceHolder>
+                <G.LeftBar>
+                    <G.DiceHolder>
+                        <G.Dice>
+                        {DiceData.map((dice, index) => {
+                            let active = dice.locked ? "locked" : "";
+                            let classlist = classNames(`${dice.resource}`, `${active}`);
+                            dieIndex +=1;
+                            return <G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)} key={index}>{dice.resource}</G.Die>
+                        })}
+                        </G.Dice>
+                        <button onClick={rollCount < 3 ? () => roll() : undefined}>Roll</button>
+                        <button onClick={() => handleBuild()}>Let's Build</button>
+                        <button onClick={() => handleTrade()}>Let's Trade</button>
+                        <button onClick={() => handleJoker()}>Joker</button>
+                    </G.DiceHolder>
+                    <G.ActionArea>
+                        {actionView === "trade" ? <Trade/> : ""}
+                    </G.ActionArea>
+                </G.LeftBar>
                 <G.ScoreTrackGrid>
                     {scoreBoard.map((round, index) => {
                         const classList = classNames(`score_${round.round}`, "score");

@@ -88,7 +88,8 @@ export const gameMetaDataSlice = createSlice({
                 points: ""
             }
         ], 
-        totalPoints: 0
+        totalPoints: 0,
+        trades: 0
     },
     reducers: {
         setCurrentUser: (state, action) => {
@@ -100,11 +101,14 @@ export const gameMetaDataSlice = createSlice({
         addRoundPoints: (state, action) => {
             console.log(action.payload)
             // add to total as well
+        },
+        addTrade: (state, action) => {
+            state.trades += 1;
         }
     }
 })
 
-export const { setCurrentUser, addRoll, addRoundPoints } = gameMetaDataSlice.actions;
+export const { setCurrentUser, addRoll, addRoundPoints, addTrade } = gameMetaDataSlice.actions;
 
 export const currentUser = state => state.gameMetaData.currentUser;
 export const diceRolledList = state => state.gameMetaData.diceRolled;
