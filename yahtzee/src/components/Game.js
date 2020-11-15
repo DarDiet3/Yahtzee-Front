@@ -50,7 +50,7 @@ const Game = () => {
     }
 
     const handleBuild = (type, id) => {
-
+        setActionView("build");
     }
 
     const handleTrade = (type, id) => {
