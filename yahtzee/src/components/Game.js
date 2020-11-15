@@ -46,7 +46,6 @@ const Game = () => {
     }
 
     // To alow for update on Roll
-    
     const diceCopy = Object.assign({}, dice);
     const [DiceData, setDiceData] = useState(diceCopy)
     
@@ -67,8 +66,13 @@ const Game = () => {
                 die.resource = newDiceResource[die.id - 1]
             }
         })
-        console.log(DiceData)
-        console.log(newList)
+
+        dispatch(setDice(newList))
+    }
+
+    const toggleLock = (index) => {
+        let newList = JSON.parse(JSON.stringify(dice));
+        newList[index].locked = !newList[index].locked;
         dispatch(setDice(newList))
     }
 
@@ -76,16 +80,17 @@ const Game = () => {
         setDiceData(dice)
     }, [dice])
 
+
     return (
         <G.Div>
             <G.Table>
                 <G.DiceHolder>
-                    <G.Die className={DiceData[0].resource}> {DiceData[0].resource} </G.Die>
-                    <G.Die className={DiceData[1].resource}> {DiceData[1].resource} </G.Die>
-                    <G.Die className={DiceData[2].resource}> {DiceData[2].resource} </G.Die>
-                    <G.Die className={DiceData[3].resource}> {DiceData[3].resource} </G.Die>
-                    <G.Die className={DiceData[4].resource}> {DiceData[4].resource} </G.Die>
-                    <G.Die className={DiceData[5].resource}> {DiceData[5].resource} </G.Die>
+                    <G.Die className={DiceData[0].resource} onClick={() => toggleLock(0)}> {DiceData[0].resource} </G.Die>
+                    <G.Die className={DiceData[1].resource} onClick={() => toggleLock(1)}> {DiceData[1].resource} </G.Die>
+                    <G.Die className={DiceData[2].resource} onClick={() => toggleLock(2)}> {DiceData[2].resource} </G.Die>
+                    <G.Die className={DiceData[3].resource} onClick={() => toggleLock(3)}> {DiceData[3].resource} </G.Die>
+                    <G.Die className={DiceData[4].resource} onClick={() => toggleLock(4)}> {DiceData[4].resource} </G.Die>
+                    <G.Die className={DiceData[5].resource} onClick={() => toggleLock(5)}> {DiceData[5].resource} </G.Die>
                     <button onClick={() => roll()}>Roll</button>
                 </G.DiceHolder>
                 <G.Board>
