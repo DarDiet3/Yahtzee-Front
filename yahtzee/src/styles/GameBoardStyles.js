@@ -184,6 +184,10 @@ export const Die = styled.div`
     &.locked {
         box-shadow: 0px 0px 8px 4px red;
     }
+    &.unavailable {
+        box-shadow: none;
+        filter: grayscale(80%);
+    }
 `
 
 export const ActionArea = styled.div`

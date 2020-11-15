@@ -84,7 +84,7 @@ const Game = () => {
         let newList = JSON.parse(JSON.stringify(dice)); //https://stackoverflow.com/questions/42523881/how-to-clone-a-javascript-array-of-objects
         console.log(dice)
         newList.map(die => {
-            if(!die.locked){
+            if(!die.locked && die.available){
                 die.resource = newDiceResource[die.id - 1]
                 // Add to total dice rolled count
                 dispatch(addRoll(die.resource))
@@ -113,7 +113,8 @@ const Game = () => {
                         <G.Dice>
                         {DiceData.map((dice, index) => {
                             let active = dice.locked ? "locked" : "";
-                            let classlist = classNames(`${dice.resource}`, `${active}`);
+                            let available = dice.available ? "" : "unavailable";
+                            let classlist = classNames(`${dice.resource}`, `${active}`, `${available}`);
                             dieIndex +=1;
                             return <G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)} key={index}>{dice.resource}</G.Die>
                         })}

@@ -103,7 +103,7 @@ export const gameMetaDataSlice = createSlice({
             // add to total as well
         },
         addTrade: (state, action) => {
-            state.trades += 1;
+            state.trades += action.payload;
         }
     }
 })

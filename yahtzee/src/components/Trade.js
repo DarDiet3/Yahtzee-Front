@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { diceList } from "../features/gameBoardDataSlice";
-import { addTrade } from "../features/gameBoardDataSlice";
+import { setDice } from "../features/gameBoardDataSlice";
+import { addTrade } from "../features/gameMetaDataSlice";
 
 import * as A from "../styles/ActionBarStyles";
 import * as G from "../styles/GameBoardStyles";
@@ -10,6 +11,7 @@ import Game from "./Game";
 
 const Trade = () => {
     //state Variables
+    const dispatch = useDispatch();
     const dice = useSelector(diceList);
     const [resources, setResources] = useState([
         { 
@@ -47,32 +49,55 @@ const Trade = () => {
     availableGold.map(gold => {goldId.push(gold.id)});
 
 
-    const [updateResources, setUpdatedResources] = useState(availableResources);
+    const [updateResources, setUpdatedResources] = useState([]);
 
     const [goldCount, setGoldCount] = useState(availableGold.length)
 
     const handleChange = (resource) => {
-        const newResource = {...resource}
-        const newResourceList = [...resources]
-        console.log(newResource)
+        const newResource = {...resource};
+        const newResourceList = [...resources];
+        const updates = [...updateResources];
         const checked = !newResource.checked;
         if(checked) {
             if(goldCount >= 2){
                 newResource.checked = !newResource.checked;
                 newResourceList[newResource.id - 1] = newResource;
-                console.log(newResourceList)
-                setResources(newResourceList)
-                setGoldCount(goldCount - 2)
+                updates.push(newResource.resource);
+                setUpdatedResources(updates);
+                setResources(newResourceList);
+                setGoldCount(goldCount - 2);
             }
         } else {
             newResource.checked = !newResource.checked;
             newResourceList[newResource.id - 1] = newResource;
-            console.log(newResourceList)
+            const index = updates.indexOf(newResource.resource)
+            updates.splice(index, 1);
+            setUpdatedResources(updates)
             setResources(newResourceList)
             setGoldCount(goldCount + 2)
         };
-    
-        // setGoldCount(goldCount - 2)
+    }
+
+    const handleTrade = (e, updateResources) => {
+        e.preventDefault();
+        const tradesMade=Math.floor((goldId.length) / 2);
+        dispatch(addTrade(tradesMade));
+        //Update Rsource list to reflect trade. available false is like setting aside
+        //Shift twice to account for both gold dice used
+        for(let i = 0; i < tradesMade; i++) {
+            const idx1 = goldId[0] - 1;
+            const idx2 = goldId[1] - 1;
+            availableResources[idx1].resource = updateResources[i];
+            availableResources[idx2].available = false;
+            goldId.shift();
+            goldId.shift();
+        }
+        dispatch(setDice(availableResources));
+        console.log(tradesMade)
+        console.log(updateResources)
+        console.log(goldId)
+        console.log(availableResources)
+
     }
 
 
@@ -86,7 +111,7 @@ const Trade = () => {
                 <A.TradePost>
                     <p><A.Bold>Gold Avaiable: </A.Bold> {goldCount} </p>
                     <p><A.Bold>Select Resource</A.Bold></p>
-                    <A.ResourceForm>
+                    <A.ResourceForm onSubmit={(e) => handleTrade(e, updateResources)}>
                         {resources.map((resource, index) => {
                             console.log(resource)
                             return(
@@ -103,6 +128,7 @@ const Trade = () => {
                                 </div>
                             )
                         })}
+                        <button type="submit">Make Trade</button>
                     </A.ResourceForm>
                 </A.TradePost>
             }
