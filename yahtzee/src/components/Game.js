@@ -57,13 +57,15 @@ const Game = () => {
     }
 
     const handleJoker = (type, id) => {
-        
+
     }
+
     //===== Roll =====
     // To al/ow for update on Roll
     const diceCopy = JSON.parse(JSON.stringify(dice));
     const [DiceData, setDiceData] = useState(diceCopy)
     const [rollCount, setRollCount] = useState(0)
+    const [resourcesToBuild, setResourcesToBuild] = useState(0)
     
     const roll = () => {
         setRollCount(rollCount + 1);
@@ -76,16 +78,15 @@ const Game = () => {
         const dice6 = Math.floor(Math.random() * 6);
 
         let newDiceResource = [resources[dice1], resources[dice2], resources[dice3], resources[dice4], resources[dice5], resources[dice6]];
-        // Add to total dice rolled count
-        newDiceResource.map(die => {
-            dispatch(addRoll(die))
-        })
+        
 
         let newList = JSON.parse(JSON.stringify(dice)); //https://stackoverflow.com/questions/42523881/how-to-clone-a-javascript-array-of-objects
         console.log(dice)
         newList.map(die => {
             if(!die.locked){
                 die.resource = newDiceResource[die.id - 1]
+                // Add to total dice rolled count
+                dispatch(addRoll(die.resource))
             }
         })
 
@@ -116,6 +117,9 @@ const Game = () => {
                     })}
                     </G.Dice>
                     <button onClick={rollCount < 3 ? () => roll() : undefined}>Roll</button>
+                    <button onClick={() => handleBuild()}>Let's Build</button>
+                    <button onClick={() => handleTrade()}>Let's Trade</button>
+                    <button onClick={() => handleJoker()}>Joker</button>
                 </G.DiceHolder>
                 <G.ScoreTrackGrid>
                     {scoreBoard.map((round, index) => {
