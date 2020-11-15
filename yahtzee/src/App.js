@@ -6,6 +6,8 @@ import LandingPage from "./components/LandingPage";
 import SignupForm from "./components/SignUpForm";
 import LoginForm from "./components/LoginForm";
 import Lobby from "./components/Lobby";
+import Profile from "./components/Profile";
+import GameDisplay from "./components/GameDispaly";
 
 import { currentUser } from "./features/gameMetaDataSlice";
 
@@ -15,7 +17,11 @@ function App() {
   return (
     <div className="App">
       {activeUser ? 
+        <>
         <Route exact path="/" component={Lobby}/>
+        <Route path="/profile" component={Profile}/>
+        <Route path="/game" component={GameDisplay}/>
+        </>
     :
     <>
         <Route exact path="/" component={LandingPage}/>
