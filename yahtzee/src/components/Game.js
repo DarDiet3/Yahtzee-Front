@@ -12,6 +12,7 @@ import { addRoll, addRoundPoints  } from "../features/gameMetaDataSlice";
 
 import * as G from "../styles/GameBoardStyles";
 import Trade from "./Trade";
+import Build from "./Build";
 
 const Game = () => {
     // State Variables
@@ -66,7 +67,7 @@ const Game = () => {
     const diceCopy = JSON.parse(JSON.stringify(dice));
     const [DiceData, setDiceData] = useState(diceCopy)
     const [rollCount, setRollCount] = useState(0)
-    const [actionView, setActionView] = useState("trade")
+    const [actionView, setActionView] = useState("build")
     
     const roll = () => {
         setRollCount(rollCount + 1);
@@ -126,6 +127,7 @@ const Game = () => {
                     </G.DiceHolder>
                     <G.ActionArea>
                         {actionView === "trade" ? <Trade/> : ""}
+                        {actionView === "build" ? <Build/> : ""}
                     </G.ActionArea>
                 </G.LeftBar>
                 <G.ScoreTrackGrid>

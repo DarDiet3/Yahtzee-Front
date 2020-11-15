@@ -3,6 +3,8 @@ import { Die }from "./GameBoardStyles";
 
 export const MainDiv = styled.div`
     height: 60%;
+    display: flex;
+    flex-direction: column;
 `
 export const H2 = styled.h2`
     margin: 0;
@@ -12,6 +14,8 @@ export const TradePost = styled.div`
     width: 95%;
     border: solid lemonchiffon 1px;
     background: lemonchiffon;
+    display: flex;
+    flex-direction: column;
 `
 export const Bold = styled.span`
     margin: 0;
@@ -46,5 +50,14 @@ export const ResourceLabel = styled.div`
     }
 `
 export const ResourceForm = styled.form`
+
+`
+
+export const BuildCostCard = styled.div`
+    height: 150px;
+    width: 85%;
+    background: blue;
+`
+export const BuildForm = styled.form`
 
 `
