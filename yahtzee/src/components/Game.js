@@ -92,6 +92,12 @@ const Game = () => {
          if(roundCount === 15){
             setGameActive(false)
          }
+         let diceCopy = JSON.parse(JSON.stringify(dice));
+         diceCopy.map(die => {
+             die.available = true;
+             die.locked = false;
+         })
+         dispatch(setDice(diceCopy))
      }
 
       //======= Game Over =====
@@ -512,6 +518,7 @@ const Game = () => {
             <G.ModDiv>
                 <G.Modal>
                     <h1>Great Game!</h1>
+                    <h2>Final Score: {total}</h2>
                     <G.Button onClick={() => handleNewGame()}>Play Again</G.Button>
                     <Link to="/">Back to Lobby</Link>
                 </G.Modal>

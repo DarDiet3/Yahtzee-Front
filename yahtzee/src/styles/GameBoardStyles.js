@@ -194,6 +194,7 @@ export const Die = styled.div`
     }
     &.unavailable {
         box-shadow: none;
+        background: purple;
         filter: grayscale(80%);
     }
 `
