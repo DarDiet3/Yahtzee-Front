@@ -175,7 +175,7 @@ const Game = () => {
                     roundScore[roundCount - 1].points += item.points;
 
                     settlementList[item.id - 1].built = true;
-                    settlementList[item.id - 1].canBuid = false;
+                    settlementList[item.id - 1].canBuild = false;
                     
                     diceCopy.map(die => {
                         if(die.available){
@@ -211,8 +211,47 @@ const Game = () => {
                     
                     dispatch(addRoundPoints({list:roundScore, round: roundCount}));
                     dispatch(addBuildCount("settlement"));
-                    dispatch(setRoadList(roadList));
+                    dispatch(setSettlementList(settlementList));
                     dispatch(setDice(diceCopy));
+                    break;
+                case "city":
+                    roundScore[roundCount - 1].points += item.points;
+
+                    cityList[item.id - 1].built = true;
+                    cityList[item.id - 1].canBuild = false;
+                    
+                    diceCopy.map(die => {
+                        if(die.available){
+                            switch(die.resource){
+                                case "rock":
+                                    rockId.push(die.id);
+                                    break;
+                                case "wheat":
+                                    wheatId.push(die.id);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    })
+
+                    idx1 = rockId[0] - 1;
+                    idx2 = rockId[1] - 1;
+                    idx3 = rockId[2] - 1;
+                    idx4 = wheatId[0] - 1;
+                    idx5 = wheatId[1] - 1;
+                    diceCopy[idx1].available = false;
+                    diceCopy[idx2].available = false;
+                    diceCopy[idx3].available = false;
+                    diceCopy[idx4].available = false;
+                    diceCopy[idx5].available = false;
+                    
+                    dispatch(addRoundPoints({list:roundScore, round: roundCount}));
+                    dispatch(addBuildCount("city"));
+                    dispatch(setCityList(cityList));
+                    dispatch(setDice(diceCopy));
+                    break;
+
 
             }
         }
