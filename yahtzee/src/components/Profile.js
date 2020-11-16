@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Link, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -8,11 +8,18 @@ import * as L from "../styles/LandingPageStyles";
 import * as P from "../styles/ProfileStyles";
 
 import { currentUser } from "../features/gameMetaDataSlice";
-
+import { getUserData } from "../services/api_helper";
 
 const Profile = () => {
     const activeUser = useSelector(currentUser);
     console.log(activeUser)
+    const[userData, setUserData] = useState([])
+    console.log(userData)
+    useEffect(() => {
+        let data = getUserData(activeUser.id);
+        setUserData(data)
+    }, [])
+
     return (
         activeUser.username === "guest" ?
             <L.Div>

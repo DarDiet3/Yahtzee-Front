@@ -30,21 +30,29 @@ export const verifyUser = async () => {
     if(token) {
         api.defaults.headers.common.authorization = `Bearer ${token}`;
         const resp = await api.get("/auth/verify");
-        return resp.data
+        return resp.data;
     }
     return false;
 }
 
 //======= GAME DATA ========
 export const addData = async (gameData) => {
-    // const resp = await api.post("/data/addData", gameData)
+    const resp = await api.post("/data/addData", gameData)
     const resp2 = await api.post("/leaderboard/new", gameData)
-    // console.log(resp.data);
-    console.log(resp2.data)
+    console.log(resp.data);
+    console.log(resp2.data);
 }
 
 //======== SCORE BOARD =======
 export const getScore = async(number) => {
     const resp = await api.get(`/leaderboard/${number}`)
+    console.log(resp.data);
+    return resp.data;
+}
+
+//===== USER DATA ======
+export const getUserData = async(userId) => {
+    const resp = await api.get(`/user/${userId}`);
     console.log(resp.data)
+    return resp.data
 }
