@@ -164,7 +164,8 @@ const Game = () => {
                         )
                     })}
                     {knights.map((knight, index) => {
-                        const classList = classNames(`knight_${knight.id}`, `${knight.resource}`, "knight");
+                        const canBuild = (buildState==="Knight" && knight.canBuild) ? "canBuild" : undefined;
+                        const classList = classNames(`knight_${knight.id}`, `${knight.resource}`, "knight", `${canBuild}`);
                         return(
                             <G.KnightHolder
                                 key={index}
@@ -211,7 +212,8 @@ const Game = () => {
                         )
                     })}
                     {cities.map((city, index)=> {
-                        const classList = classNames(`city_${city.id}`, "city");
+                        const canBuild = (buildState==="City" && city.canBuild) ? "canBuild" : undefined;
+                        const classList = classNames(`city_${city.id}`, "city", `${canBuild}`);
                         return(
                             <G.CityHolder
                                 key={index}

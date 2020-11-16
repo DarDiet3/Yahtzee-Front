@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
-import { toggleCanBuild, setDice, setRoadList, setSettlementList } from "../features/gameBoardDataSlice";
+import { toggleCanBuild, setDice, setRoadList, setSettlementList, setCityList } from "../features/gameBoardDataSlice";
 import { setBuild } from "../features/gameMetaDataSlice";
 
 import * as A from "../styles/ActionBarStyles"
@@ -81,7 +81,10 @@ const Build = () => {
                 roadBuildCheck();
                 break;
             case "Settlement":
-                SettlementBuildCheck();
+                settlementBuildCheck();
+                break;
+            case "City":
+                cityBuildCheck();
                 break;
             default:
                 break;
@@ -129,7 +132,7 @@ const Build = () => {
         console.log(roadList)
     }
 
-    const SettlementBuildCheck = () => {
+    const settlementBuildCheck = () => {
         let settlementList = JSON.parse(JSON.stringify(settlements));
         let builtSettlementList = settlementList.filter(settlement => settlement.built);
 
@@ -168,6 +171,34 @@ const Build = () => {
         }
         dispatch(setSettlementList(settlementList));
         console.log(settlementList)
+    }
+
+    const cityBuildCheck = () => {
+        let cityList = JSON.parse(JSON.stringify(cities));
+        let builtCityList = cityList.filter(city => city.built);
+
+        if(builtCityList.length !== 0){
+            builtCityList.map(city =>  {
+                switch(city.id){
+                    case 1:
+                        if(roads[4].built){
+                            setCanBuild(2, cityList);
+                            break;
+                        } else { break; }
+                    case 2:
+                        if(roads[13].built){
+                            setCanBuild(3, cityList);
+                            break;
+                        } else { break; }
+                    case 3:
+                        if(roads[15].built){
+                            setCanBuild(4, cityList);
+                            break;
+                        } else { break; }
+                }
+            })
+        }
+        dispatch(setCityList(cityList));
     }
 
     const setCanBuild = (idx, list) => {

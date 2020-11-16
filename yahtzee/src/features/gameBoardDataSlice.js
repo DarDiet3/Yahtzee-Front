@@ -43,7 +43,7 @@ export const gameBoardDataSlice = createSlice({
             {
                 id: 2,
                 points: 1,
-                built: false,
+                built: true,
                 canBuild: false
             },
             {
@@ -61,13 +61,13 @@ export const gameBoardDataSlice = createSlice({
             {
                 id: 5,
                 points: 1,
-                built: false,
+                built: true,
                 canBuild: false
             },
             {
                 id: 6,
                 points: 1,
-                built: true,
+                built: false,
                 canBuild: false
             },
             {
@@ -141,7 +141,7 @@ export const gameBoardDataSlice = createSlice({
         cities: [
             {
                 id: 1, 
-                built: false,
+                built: true,
                 canBuild: false,
                 points: 7
             },
@@ -173,7 +173,7 @@ export const gameBoardDataSlice = createSlice({
             },
             {
                 id: 2, 
-                built: true,
+                built: false,
                 canBuild: false, 
                 points: 4
             },
@@ -317,11 +317,14 @@ export const gameBoardDataSlice = createSlice({
         },
         setSettlementList: (state, action) => {
             state.settlements = action.payload;
+        },
+        setCityList: (state, action) => {
+            state.cities = action.payload;
         }
     }
 })
 
-export const { toggleStateBuild, setDice, setRoadList, setSettlementList } = gameBoardDataSlice.actions;
+export const { toggleStateBuild, setDice, setRoadList, setSettlementList, setCityList } = gameBoardDataSlice.actions;
 
 export const data = state => state.gameBoardData;
 export const hexList = state => state.gameBoardData.hexList;
