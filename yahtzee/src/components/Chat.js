@@ -46,7 +46,13 @@ const Chat = () => {
         setChatData({...chatData, message: ""})
     }
 
-    console.log(chatString.messages)
+    const enterMessage = (e) => {
+        if(e.keyCode === 13 && e.shiftKey === false) {
+            e.preventDefault();
+            sendMessage(e)
+        }
+    }
+
 
     return(
         <C.ChatDiv>
@@ -63,6 +69,7 @@ const Chat = () => {
                     autoComplete="off"
                     value={chatData.message}
                     onChange={(e) => {handleChange(e)}}
+                    onKeyDown={(e) => enterMessage(e)}
                     />
                     <C.ChatButton onClick={(e) => sendMessage(e)}>Send</C.ChatButton>
             </C.ChatForm>
