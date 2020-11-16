@@ -90,6 +90,13 @@ export const gameMetaDataSlice = createSlice({
         ], 
         totalPoints: 0,
         trades: 0,
+        tradeCount: {
+            rock: 0,
+            wheat: 0,
+            sheep: 0,
+            brick: 0,
+            wood: 0
+        },
         buildCounts: {
             knight: 0,
             settlement: 0,
@@ -97,7 +104,15 @@ export const gameMetaDataSlice = createSlice({
             road: 0
         },
         building: false,
-        roundsPlayed:0
+        roundsPlayed: 0,
+        jokerPlayed: 0,
+        jokerCount: {
+            rock: 0,
+            wheat: 0,
+            sheep: 0,
+            brick: 0,
+            wood: 0
+        }
     },
     reducers: {
         setCurrentUser: (state, action) => {

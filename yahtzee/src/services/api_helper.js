@@ -34,3 +34,9 @@ export const verifyUser = async () => {
     }
     return false;
 }
+
+//======= GAME DATA ========
+export const addData = async (gameData) => {
+    const resp = await api.post("/data/addData", gameData)
+    console.log(resp.data);
+}

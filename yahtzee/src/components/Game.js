@@ -7,8 +7,9 @@ import Hexagon from "react-hexagon";
 import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
 import { setDice, setRoadList, setSettlementList, setCityList, setKnightList  } from "../features/gameBoardDataSlice";
 
-import { diceRolledList, roundPoints, totalPoints, building, buildCounts } from "../features/gameMetaDataSlice";
+import { diceRolledList, roundPoints, totalPoints, building, buildCounts, gameMetaData } from "../features/gameMetaDataSlice";
 import { addRoll, addRoundPoints, addBuildCount  } from "../features/gameMetaDataSlice";
+import { addData } from "../services/api_helper";
 
 
 import * as G from "../styles/GameBoardStyles";
@@ -29,9 +30,11 @@ const Game = () => {
     const scoreBoard = useSelector(roundPoints);
     const total = useSelector(totalPoints);
     const buildState = useSelector(building);
+    const gameData = useSelector(gameMetaData);
     const [roundCount, setRoundCount] = useState(1);
     const [gameActive, setGameActive] = useState(true);
 
+    
 
     //Functions
     const toggleCanBuild = (type, id) => {
@@ -99,6 +102,8 @@ const Game = () => {
          })
          dispatch(setDice(diceCopy))
      }
+
+     
 
       //======= Game Over =====
       /**
@@ -364,6 +369,7 @@ const Game = () => {
                         <button onClick={() => toggleTrade()} disabled={rollCount === 0 ? "true" : ""}>Let's Trade</button>
                         <button onClick={() => toggleJoker()} disabled={rollCount === 0 ? "true" : ""}>Joker</button>
                         <button onClick={() => handleNewTurn()} disabled={rollCount === 0 ? "true" : ""}>Next Turn</button>
+                        <button onClick={() => addData(gameData)}>Send Data</button>
                     </G.DiceHolder>
                     <G.ActionArea>
                         {actionView === "trade" ? <Trade/> : ""}
