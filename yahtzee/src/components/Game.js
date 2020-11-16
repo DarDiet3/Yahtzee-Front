@@ -89,7 +89,7 @@ const Game = () => {
      const handleNewTurn = () => {
          setRollCount(0);
          setRoundCount(roundCount + 1);
-         if(roundCount = 15){
+         if(roundCount === 15){
             setGameActive(false)
          }
      }
