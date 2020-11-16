@@ -203,7 +203,8 @@ export const KnightHolder = styled.div`
     color: gray;
     filter: drop-shadow(0 0 3px navy);
     &.canBuild {
-        filter: drop-shadow(0 0 6px yellow); 
+        filter: drop-shadow(0 0 6px yellow);
+        cursor: pointer; 
     }
 `
 
@@ -216,6 +217,7 @@ export const SettlementHolder = styled.div`
     color: #F5F5F5;
     &.canBuild {
         filter: drop-shadow(0 0 6px yellow); 
+        cursor: pointer;
     }
 `
 export const CityHolder = styled.div`
@@ -227,10 +229,11 @@ export const CityHolder = styled.div`
     color: #F5F5F5;
     &.canBuild {
         filter: drop-shadow(0 0 6px yellow); 
+        cursor: pointer;
     }
 `
 
-export const IconText = styled.p`
+export const IconText = styled.a`
     text-align: center;
     font-size: 16px;
     z-index: 1;
@@ -244,6 +247,9 @@ export const IconText = styled.p`
         margin: 0;
         margin-top: 15px;
         padding: 0;
+    }
+    &.p_canBuild {
+        cursor: pointer;
     }
     
 `
@@ -265,6 +271,7 @@ export const RoadHolder = styled.div`
 
     &.canBuild {
         filter: drop-shadow(0 0 6px yellow); 
+        cursor: pointer;
     }
     
 `

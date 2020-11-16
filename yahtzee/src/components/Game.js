@@ -176,7 +176,8 @@ const Game = () => {
                         )
                     })}
                     {knights.map((knight, index) => {
-                        const classList = classNames(`knight_${knight.id}`, `${knight.resource}`, "knight");
+                        const canBuild = (buildState==="Knight" && knight.canBuild) ? "canBuild" : undefined;
+                        const classList = classNames(`knight_${knight.id}`, `${knight.resource}`, "knight", `p_${canBuild}`);
                         return(
                             <G.IconText
                                 key={index}
@@ -188,7 +189,6 @@ const Game = () => {
                     })}
                     {settlements.map((settlement, index) => {
                         const canBuild = (buildState==="Settlement" && settlement.canBuild) ? "canBuild" : undefined;
-                        console.log(settlement.canBuild)
                         const classList = classNames(`set_${settlement.id}`, "settlement", `${canBuild}`);
                         return (
                                 <G.SettlementHolder
@@ -201,7 +201,8 @@ const Game = () => {
                         )
                     })}
                     {settlements.map((settlement, index) => {
-                        const classList = classNames(`set_${settlement.id}`, "settlement");
+                        const canBuild = (buildState==="Settlement" && settlement.canBuild) ? "canBuild" : undefined;
+                        const classList = classNames(`set_${settlement.id}`, "settlement", `p_${canBuild}`);
                         return (
                                 <G.IconText
                                     key={index}
@@ -224,7 +225,8 @@ const Game = () => {
                         )
                     })}
                     {cities.map((city, index)=> {
-                        const classList = classNames(`city_${city.id}`, "city");
+                        const canBuild = (buildState==="City" && city.canBuild) ? "canBuild" : undefined;
+                        const classList = classNames(`city_${city.id}`, "city", `p_${canBuild}`);
                         return(
                             <G.IconText key={index} className={classList}>
                                 {city.points}

@@ -205,7 +205,7 @@ export const gameBoardDataSlice = createSlice({
         knights: [
             {
                 id: 1,
-                build: false,
+                built: false,
                 canBuild: true, 
                 points: 1,
                 resource: "rock",
@@ -213,7 +213,7 @@ export const gameBoardDataSlice = createSlice({
             },
             {
                 id: 2,
-                build: false,
+                built: false,
                 canBuild: false, 
                 points: 2,
                 resource: "wheat",
@@ -221,7 +221,7 @@ export const gameBoardDataSlice = createSlice({
             },
             {
                 id: 3,
-                build: false,
+                built: true,
                 canBuild: false, 
                 points: 3,
                 resource: "sheep",
@@ -229,7 +229,7 @@ export const gameBoardDataSlice = createSlice({
             },
             {
                 id: 4,
-                build: false,
+                built: false,
                 canBuild: false, 
                 points: 4,
                 resource: "wood",
@@ -237,7 +237,7 @@ export const gameBoardDataSlice = createSlice({
             },
             {
                 id: 5,
-                build: false,
+                built: false,
                 canBuild: false, 
                 points: 5,
                 resource: "brick",
@@ -245,7 +245,7 @@ export const gameBoardDataSlice = createSlice({
             },
             {
                 id: 6,
-                build: false,
+                built: false,
                 canBuild: false, 
                 points: 6,
                 resource: "any",
@@ -320,11 +320,14 @@ export const gameBoardDataSlice = createSlice({
         },
         setCityList: (state, action) => {
             state.cities = action.payload;
+        },
+        setKnightList: (state, action) => {
+            state.knights = action.payload;
         }
     }
 })
 
-export const { toggleStateBuild, setDice, setRoadList, setSettlementList, setCityList } = gameBoardDataSlice.actions;
+export const { toggleStateBuild, setDice, setRoadList, setSettlementList, setCityList, setKnightList } = gameBoardDataSlice.actions;
 
 export const data = state => state.gameBoardData;
 export const hexList = state => state.gameBoardData.hexList;

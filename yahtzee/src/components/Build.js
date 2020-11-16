@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
-import { toggleCanBuild, setDice, setRoadList, setSettlementList, setCityList } from "../features/gameBoardDataSlice";
+import { toggleCanBuild, setDice, setRoadList, setSettlementList, setCityList, setKnightList } from "../features/gameBoardDataSlice";
 import { setBuild } from "../features/gameMetaDataSlice";
 
 import * as A from "../styles/ActionBarStyles"
@@ -85,6 +85,9 @@ const Build = () => {
                 break;
             case "City":
                 cityBuildCheck();
+                break;
+            case "Knight":
+                knightBuildCheck();
                 break;
             default:
                 break;
@@ -199,6 +202,36 @@ const Build = () => {
             })
         }
         dispatch(setCityList(cityList));
+    }
+
+    const knightBuildCheck = () => {
+        let knightList = JSON.parse(JSON.stringify(knights));
+        let builtKnightList = knightList.filter(knight => knight.built);
+
+        if(builtKnightList.length !== 0){
+            builtKnightList.map(knight => {
+                switch(knight.id){
+                    case 1:
+                        setCanBuild(2, knightList);
+                        break;
+                    case 2:
+                        setCanBuild(3, knightList);
+                        break;
+                    case 3:
+                        setCanBuild(4, knightList);
+                        break;
+                    case 4:
+                        setCanBuild(5, knightList);
+                        break;
+                    case 5: 
+                        setCanBuild(6, knightList);
+                        break;
+                    default:
+                        break;
+                }
+            })
+        }
+        dispatch(setKnightList(knightList));
     }
 
     const setCanBuild = (idx, list) => {
