@@ -119,16 +119,24 @@ const Game = () => {
         if(item.canBuild){
             let roundScore = JSON.parse(JSON.stringify(scoreBoard));
             let roadList = JSON.parse(JSON.stringify(roads));
+            let settlementList = JSON.parse(JSON.stringify(settlements));
+            let cityList = JSON.parse(JSON.stringify(cities));
+            let knightList = JSON.parse(JSON.stringify(knights));
             let diceCopy = JSON.parse(JSON.stringify(diceData));
-            let availableDice = diceCopy.filter(die => die.available);
+            
             let brickId = [];
             let wheatId = [];
             let sheepId = [];
             let rockId = [];
             let woodId = [];
+            let idx1;
+            let idx2;
+            let idx3;
+            let idx4;
+            let idx5;
 
 
-            console.log(availableDice)
+
             //Build Steps. 1. Add applicable round score. 2.Change build and canbuild status
             //3. deactiveate necessary dice
             switch(type){
@@ -138,25 +146,74 @@ const Game = () => {
                     roadList[item.id - 1].built = true;
                     roadList[item.id - 1].canBuild = false;
                     
-                    availableDice.map(die => {
-                        if(die.resource === "brick"){
-                            brickId.push(die.id)
-                        } else if(die.resource === "wood") {
-                            woodId.push(die.id)
+                    diceCopy.map(die => {
+                        if(die.available){
+                            switch(die.resource){
+                                case "brick":
+                                    brickId.push(die.id);
+                                    break;
+                                case "wood":
+                                    woodId.push(die.id);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     })
 
-                    console.log(brickId)
-                    console.log(woodId)
-                    const idx1 = brickId[0] - 1;
-                    const idx2 = woodId[0] - 1;
-                    availableDice[idx1].available = false;
-                    availableDice[idx2].available = false;
+                    idx1 = brickId[0] - 1;
+                    idx2 = woodId[0] - 1;
+                    diceCopy[idx1].available = false;
+                    diceCopy[idx2].available = false;
 
                     dispatch(addRoundPoints({list:roundScore, round: roundCount}));
                     dispatch(addBuildCount("road"));
                     dispatch(setRoadList(roadList));
-                    dispatch(setDice(availableDice));
+                    dispatch(setDice(diceCopy));
+                    break;
+                case "settlement":
+                    roundScore[roundCount - 1].points += item.points;
+
+                    settlementList[item.id - 1].built = true;
+                    settlementList[item.id - 1].canBuid = false;
+                    
+                    diceCopy.map(die => {
+                        if(die.available){
+                            switch(die.resource){
+                                case "brick":
+                                    brickId.push(die.id);
+                                    break;
+                                case "wood":
+                                    woodId.push(die.id);
+                                    break;
+                                case "sheep":
+                                    sheepId.push(die.id);
+                                    break;
+                                case "wheat":
+                                    wheatId.push(die.id);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    })
+
+                    console.log(brickId)
+
+                    idx1 = brickId[0] - 1;
+                    idx2 = woodId[0] - 1;
+                    idx3 = sheepId[0] - 1;
+                    idx4 = wheatId[0] - 1;
+                    diceCopy[idx1].available = false;
+                    diceCopy[idx2].available = false;
+                    diceCopy[idx3].available = false;
+                    diceCopy[idx4].available = false;
+                    
+                    dispatch(addRoundPoints({list:roundScore, round: roundCount}));
+                    dispatch(addBuildCount("settlement"));
+                    dispatch(setRoadList(roadList));
+                    dispatch(setDice(diceCopy));
+
             }
         }
     }
