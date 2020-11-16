@@ -8,6 +8,7 @@ import LoginForm from "./components/LoginForm";
 import Lobby from "./components/Lobby";
 import Profile from "./components/Profile";
 import GameDisplay from "./components/GameDispaly";
+import Chat from "./components/Chat";
 
 import { currentUser } from "./features/gameMetaDataSlice";
 
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/" component={Lobby}/>
         <Route path="/profile" component={Profile}/>
         <Route path="/game" component={GameDisplay}/>
+        <Route path="/chat" component={Chat}/>
         </>
     :
     <>
