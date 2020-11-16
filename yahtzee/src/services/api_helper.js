@@ -37,6 +37,14 @@ export const verifyUser = async () => {
 
 //======= GAME DATA ========
 export const addData = async (gameData) => {
-    const resp = await api.post("/data/addData", gameData)
-    console.log(resp.data);
+    // const resp = await api.post("/data/addData", gameData)
+    const resp2 = await api.post("/leaderboard/new", gameData)
+    // console.log(resp.data);
+    console.log(resp2.data)
+}
+
+//======== SCORE BOARD =======
+export const getScore = async(number) => {
+    const resp = await api.get(`/leaderboard/${number}`)
+    console.log(resp.data)
 }

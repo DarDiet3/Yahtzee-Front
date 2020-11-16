@@ -32,7 +32,7 @@ const Game = () => {
     const buildState = useSelector(building);
     const gameData = useSelector(gameMetaData);
     const [roundCount, setRoundCount] = useState(13);
-    const [gameActive, setGameActive] = useState(true);
+    const [gameActive, setGameActive] = useState(false);
 
     
 
