@@ -186,7 +186,9 @@ const Game = () => {
                         )
                     })}
                     {settlements.map((settlement, index) => {
-                        const classList = classNames(`set_${settlement.id}`, "settlement");
+                        const canBuild = (buildState==="Settlement" && settlement.canBuild) ? "canBuild" : undefined;
+                        console.log(settlement.canBuild)
+                        const classList = classNames(`set_${settlement.id}`, "settlement", `${canBuild}`);
                         return (
                                 <G.SettlementHolder
                                     key={index}
@@ -228,7 +230,7 @@ const Game = () => {
                         )
                     })}
                     {roads.map((road, index) => {
-                        const canBuild = (buildState && road.canBuild) ? "canBuild" : undefined;
+                        const canBuild = (buildState==="Road" && road.canBuild) ? "canBuild" : undefined;
                         const classList = classNames(`road_${road.id}`, "road", `${canBuild}`);
                         return(
                             <G.RoadHolder key={index} className={classList}>

@@ -202,6 +202,9 @@ export const KnightHolder = styled.div`
     margin-left: -7.5px;
     color: gray;
     filter: drop-shadow(0 0 3px navy);
+    &.canBuild {
+        filter: drop-shadow(0 0 6px yellow); 
+    }
 `
 
 export const SettlementHolder = styled.div`
@@ -211,6 +214,9 @@ export const SettlementHolder = styled.div`
     margin-left: -7.5px;
     filter: drop-shadow(0 0 3px navy);
     color: #F5F5F5;
+    &.canBuild {
+        filter: drop-shadow(0 0 6px yellow); 
+    }
 `
 export const CityHolder = styled.div`
     height: 40px;
@@ -219,6 +225,9 @@ export const CityHolder = styled.div`
     margin-left: -10px;
     filter: drop-shadow(0 0 3px navy);
     color: #F5F5F5;
+    &.canBuild {
+        filter: drop-shadow(0 0 6px yellow); 
+    }
 `
 
 export const IconText = styled.p`

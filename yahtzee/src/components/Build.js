@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
-import { toggleCanBuild, setDice, setRoadList } from "../features/gameBoardDataSlice";
+import { toggleCanBuild, setDice, setRoadList, setSettlementList } from "../features/gameBoardDataSlice";
 import { setBuild } from "../features/gameMetaDataSlice";
 
 import * as A from "../styles/ActionBarStyles"
@@ -76,7 +76,18 @@ const Build = () => {
     //Check for lcations able to build
     const checkBuild = (type) => {
         dispatch(setBuild(true));
-        roadBuildCheck()
+        switch(type) {
+            case "Road":
+                roadBuildCheck();
+                break;
+            case "Settlement":
+                SettlementBuildCheck();
+                break;
+            default:
+                break;
+        }
+       
+        
     }
 
     const roadBuildCheck = () => {
@@ -86,19 +97,19 @@ const Build = () => {
         builtRoadList.map(road => {
             switch(road.id) {
                 case 1:
-                    toggleRoadBuild(2, roadList);
-                    toggleRoadBuild(3, roadList);
+                    setCanBuild(2, roadList);
+                    setCanBuild(3, roadList);
                     break;
                 case 3:
-                    toggleRoadBuild(4, roadList);
+                    setCanBuild(4, roadList);
                     break;
                 case 4:
-                    toggleRoadBuild(5, roadList);
-                    toggleRoadBuild(6, roadList);
+                    setCanBuild(5, roadList);
+                    setCanBuild(6, roadList);
                     break;
                 case 8:
-                    toggleRoadBuild(9, roadList);
-                    toggleRoadBuild(13, roadList);
+                    setCanBuild(9, roadList);
+                    setCanBuild(13, roadList);
                     break;
                 case 6:
                 case 7:
@@ -108,7 +119,7 @@ const Build = () => {
                 case 13:
                 case 14:
                 case 15:
-                    toggleRoadBuild((road.id + 1), roadList);
+                    setCanBuild((road.id + 1), roadList);
                     break;
                 default:
                     break;
@@ -117,19 +128,62 @@ const Build = () => {
         dispatch(setRoadList(roadList));
         console.log(roadList)
     }
-    const toggleRoadBuild = (idx, roadList) => {
-        roadList[idx - 1].canBuild = roadList[idx - 1].built ? false : true;
+
+    const SettlementBuildCheck = () => {
+        let settlementList = JSON.parse(JSON.stringify(settlements));
+        let builtSettlementList = settlementList.filter(settlement => settlement.built);
+
+        if(builtSettlementList.length !== 0) {
+            builtSettlementList.map(settlment => {
+                switch(settlment.id){
+                    case 1: 
+                        if(roads[2].built){
+                            setCanBuild(2, settlementList)
+                            break;
+                        } else { break; }
+                    case 2:
+                        if(roads[5].built){
+                            setCanBuild(3, settlementList)
+                            break;
+                        } else { break; }
+                    case 3: 
+                        if(roads[7].built){
+                            setCanBuild(4, settlementList)
+                            break;
+                        } else { break; }
+                    case 4:
+                        if(roads[9].built){
+                            setCanBuild(5, settlementList)
+                            break;
+                        } else { break; }
+                    case 5:
+                        if(roads[11].built){
+                            setCanBuild(6, settlementList)
+                            break;
+                        } else { break; }
+                    default:
+                        break;
+                }
+            })
+        }
+        dispatch(setSettlementList(settlementList));
+        console.log(settlementList)
+    }
+
+    const setCanBuild = (idx, list) => {
+        list[idx - 1].canBuild = list[idx - 1].built ? false : true;
         //can't build at a site that is already built
     }
 
     const handleSelect = (type) => {
         setLocationView(true);
         checkBuild(type);
+        dispatch(setBuild(type))
     }
 
     const handleBuild = (e,) => {
         e.preventDefault();
-        dispatch(setBuild(false))
+        
     }
     
 
