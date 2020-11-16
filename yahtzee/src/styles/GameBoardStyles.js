@@ -34,7 +34,7 @@ export const Board = styled.div`
         grid-row: 3;
     }
 
-    & .road_2, .road_5, .hex_1, .hex_2{
+    & .road_2, .road_5, .hex_1, .hex_2, .joker_1, .joker_2{
         grid-row: 5;
     }
 
@@ -46,7 +46,7 @@ export const Board = styled.div`
         grid-row: 9;
     }
 
-    & .road_7, .hex_3, .hex_6, .hex_7{
+    & .road_7, .hex_3, .hex_6, .hex_7, .joker_3, .joker_6{
         grid-row: 11;
     }
 
@@ -58,7 +58,7 @@ export const Board = styled.div`
         grid-row: 15;
     }
 
-    & .road_13, .hex_4, .hex_5{
+    & .road_13, .hex_4, .hex_5,.joker_4, .joker_5{
         grid-row: 17;
     }
 
@@ -79,7 +79,7 @@ export const Board = styled.div`
         grid-column: 2;
     }
 
-    & .city_2, .set_4, .road_5, .road_13, .knight_3, .hex_3 {
+    & .city_2, .set_4, .road_5, .road_13, .knight_3, .hex_3, .joker_3 {
         grid-column: 3;
     }
 
@@ -87,7 +87,7 @@ export const Board = styled.div`
         grid-column: 4;
     }
 
-    & .city_3, .set_2, .knight_2, .knight_4, .hex_2, .hex_4 {
+    & .city_3, .set_2, .knight_2, .knight_4, .hex_2, .hex_4, .joker_2, .joker_4 {
         grid-column: 5;
     }
 
@@ -103,7 +103,7 @@ export const Board = styled.div`
         grid-column: 8;
     }
 
-    & .city_4, .set_1, .knight_1, .knight_5, .hex_1, .hex_5 {
+    & .city_4, .set_1, .knight_1, .knight_5, .hex_1, .hex_5, .joker_1, .joker_5 {
         grid-column: 9;
     }
 
@@ -111,7 +111,7 @@ export const Board = styled.div`
         grid-column: 10;
     }
 
-    & .set_6, .hex_6, .knight_6{
+    & .set_6, .hex_6, .knight_6, .joker_6{
         grid-column: 11;
     }
     & .hex {
@@ -215,7 +215,42 @@ export const KnightHolder = styled.div`
         cursor: pointer; 
     }
 `
-
+export const Token = styled.div`
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: solid black 1px;
+    background: lightgray;
+    color: green;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-left:-7.5px;
+    box-shadow: 0 0 2px black;
+    &.wheat {
+        background: tan;
+    }
+    &.brick {
+        background: red;
+    }
+    &.wood {
+        background: brown;
+    }
+    &.rock {
+        background: darkgray
+    }
+    &.sheep {
+        background: white;
+    }
+    &.gold {
+        background: gold;
+    }
+    &.unavailable {
+        box-shadow: none;
+        filter: grayscale(80%);
+    }
+`
 export const SettlementHolder = styled.div`
     height: 30px;
     width: 30px;

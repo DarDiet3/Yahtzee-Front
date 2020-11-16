@@ -24,10 +24,10 @@ const Game = () => {
     let knights = useSelector(knightsList);
     const dice = useSelector(diceList);
     const resources = ["rock", "wheat", "sheep", "brick", "wood", "gold"];
+    const jokerList = ["rock", "wheat", , "sheep", "brick", "wood", "any"];
     const scoreBoard = useSelector(roundPoints);
     const total = useSelector(totalPoints);
     const buildState = useSelector(building);
-    const buildTally = useSelector(buildCounts);
     const [roundCount, setRoundCount] = useState(1);
 
 
@@ -341,6 +341,18 @@ const Game = () => {
                                 >
                                     {knight.points}
                                 </G.IconText>
+                            )
+                        })}
+                        {knights.map((joker, index) => {
+                            const canPlay = (buildState==="Knight" && !joker.jokerPlayed) ? "canPlay" : undefined;
+                            const played = joker.jokerPlayed ? "played" : undefined;
+                            const classList = classNames(`joker_${joker.id}`, `${joker.resource}`, "joker", `${canPlay}`, `${played}`);
+                            return(
+                                <G.Token
+                                    key={index}
+                                    className={classList}
+                                    onClick={(e)=>{handleBuild(e,"joker",joker)}}
+                                    />
                             )
                         })}
                         {settlements.map((settlement, index) => {
