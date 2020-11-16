@@ -5,10 +5,10 @@ import classNames from "classnames";
 import Hexagon from "react-hexagon";
 
 import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
-import { setDice, setRoadList, setSettlementList, setCityList, setKnightList  } from "../features/gameBoardDataSlice";
+import { setDice, setRoadList, setSettlementList, setCityList, setKnightList, resetBoard  } from "../features/gameBoardDataSlice";
 
 import { diceRolledList, roundPoints, totalPoints, building, buildCounts, gameMetaData } from "../features/gameMetaDataSlice";
-import { addRoll, addRoundPoints, addBuildCount  } from "../features/gameMetaDataSlice";
+import { addRoll, addRoundPoints, addBuildCount, resetStats  } from "../features/gameMetaDataSlice";
 import { addData } from "../services/api_helper";
 
 
@@ -31,7 +31,7 @@ const Game = () => {
     const total = useSelector(totalPoints);
     const buildState = useSelector(building);
     const gameData = useSelector(gameMetaData);
-    const [roundCount, setRoundCount] = useState(1);
+    const [roundCount, setRoundCount] = useState(13);
     const [gameActive, setGameActive] = useState(true);
 
     
@@ -75,18 +75,17 @@ const Game = () => {
 
     //===== New Game ====== <- Call this when game is complete
     /**
-     * Send game data to server for user
+     * X Send game data to server for user
      *      Update Leader Board (high Score)
-     * reset round count
-     * reset round points
-     * reset total points
-     * reset trades
-     * reset build counts
      * reset building
      * reset rounds played
      */
     const handleNewGame = () => {
-
+        addData(gameData);
+        dispatch(resetStats());
+        dispatch(resetBoard());
+        setGameActive(true);
+        setRoundCount(1);
     }
      //===== Turn Control =====
      const handleNewTurn = () => {
@@ -112,9 +111,9 @@ const Game = () => {
        * Display some stats about game
        * Play again or return to lobby
        */
-      const handleGameOver = () => {
-
-      }
+    const handleGameOver = () => {
+        
+    }
     
     //===== Roll =====
     // To allow for update on Roll
@@ -222,6 +221,9 @@ const Game = () => {
                     dispatch(setDice(diceCopy));
                     break;
                 case "settlement":
+                    console.log(roundScore)
+                    console.log(item)
+                    console.log(roundCount)
                     roundScore[roundCount - 1].points += item.points;
 
                     settlementList[item.id - 1].built = true;
@@ -369,7 +371,7 @@ const Game = () => {
                         <button onClick={() => toggleTrade()} disabled={rollCount === 0 ? "true" : ""}>Let's Trade</button>
                         <button onClick={() => toggleJoker()} disabled={rollCount === 0 ? "true" : ""}>Joker</button>
                         <button onClick={() => handleNewTurn()} disabled={rollCount === 0 ? "true" : ""}>Next Turn</button>
-                        <button onClick={() => addData(gameData)}>Send Data</button>
+                        
                     </G.DiceHolder>
                     <G.ActionArea>
                         {actionView === "trade" ? <Trade/> : ""}

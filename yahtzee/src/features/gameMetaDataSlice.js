@@ -139,11 +139,108 @@ export const gameMetaDataSlice = createSlice({
         },
         addRound: (state, action) => {
             state.roundsPlayed += 1;
+        },
+        resetStats: (state, action) => {
+            state.diceRolled = {
+                rock: 0,
+                wheat: 0,
+                sheep: 0,
+                brick: 0, 
+                wood: 0,
+                gold: 0
+            };
+            state.roundPoints =[
+                {
+                    round: 1,
+                    points: 0
+                },
+                {
+                    round: 2,
+                    points: 0
+                },
+                {
+                    round: 3,
+                    points: 0
+                },
+                {
+                    round: 4,
+                    points: 0
+                },
+                {
+                    round: 5,
+                    points: 0
+                },
+                {
+                    round: 6,
+                    points: 0
+                },
+                {
+                    round: 7,
+                    points: 0
+                },
+                {
+                    round: 8,
+                    points: 0
+                },
+                {
+                    round: 9,
+                    points: 0
+                },
+                {
+                    round: 10,
+                    points: 0
+                },
+                {
+                    round: 11,
+                    points: 0
+                },
+                {
+                    round: 12,
+                    points: 0
+                },
+                {
+                    round: 13,
+                    points: 0
+                },
+                {
+                    round: 14,
+                    points: 0
+                },
+                {
+                    round: 15,
+                    points: 0
+                }
+            ];
+            state.totalPoints = 0;
+            state.trades = 0;
+            state.tradeCount = {
+                rock: 0,
+                wheat: 0,
+                sheep: 0,
+                brick: 0,
+                wood: 0
+            };
+            state.buildCounts = {
+                knight: 0,
+                settlement: 0,
+                city: 0,
+                road: 0
+            };
+            state.building = false;
+            state.roundsPlayed = 0;
+            state.jokerPlayed = 0;
+            state.jokerCount = {
+                rock: 0,
+                wheat: 0,
+                sheep: 0,
+                brick: 0,
+                wood: 0
+            }
         }
     }
 })
 
-export const { setCurrentUser, addRoll, addRoundPoints, addTrade, setBuild, addBuildCount, setRoundPoints, addRound } = gameMetaDataSlice.actions;
+export const { setCurrentUser, addRoll, addRoundPoints, addTrade, setBuild, addBuildCount, setRoundPoints, addRound, resetStats } = gameMetaDataSlice.actions;
 
 export const currentUser = state => state.gameMetaData.currentUser;
 export const diceRolledList = state => state.gameMetaData.diceRolled;
