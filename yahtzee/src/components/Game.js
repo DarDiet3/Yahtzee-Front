@@ -66,7 +66,7 @@ const Game = () => {
 
     }
     //===== Start Game =====
-    setRoundCount(1);
+    // setRoundCount(1);
 
     //===== New Game ====== <- Call this when game is complete
     /**
@@ -82,21 +82,11 @@ const Game = () => {
      */
 
      //===== Turn Control ===== <- call this when complete turn is selected
-     /** For each turn:
-      * Require roll count to be greater than one before build or trade ability
-      * 
-      * On New turn:
-      * set roll count to zero
-      * turn count +=1
-      * check that turn count is not greater than 15....
-      *     if so, trigger game over
-      *
-      */
      const handleNewTurn = () => {
          setRollCount(0);
          setRoundCount(roundCount + 1);
          if(roundCount > 15){
-            
+            setGameActive("over")
          }
      }
 
@@ -356,10 +346,11 @@ const Game = () => {
                             return <G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)} key={index}>{dice.resource}</G.Die>
                         })}
                         </G.Dice>
-                        <button onClick={rollCount < 3 ? () => roll() : undefined}>Roll</button>
-                        <button onClick={() => toggleBuild()}>Let's Build</button>
-                        <button onClick={() => toggleTrade()}>Let's Trade</button>
-                        <button onClick={() => toggleJoker()}>Joker</button>
+                        <button onClick={() => roll()} disabled={rollCount === 3 ? "true" : ""}>Roll</button>
+                        <button onClick={() => toggleBuild()} disabled={rollCount === 0 ? "true" : ""}>Let's Build</button>
+                        <button onClick={() => toggleTrade()} disabled={rollCount === 0 ? "true" : ""}>Let's Trade</button>
+                        <button onClick={() => toggleJoker()} disabled={rollCount === 0 ? "true" : ""}>Joker</button>
+                        <button onClick={() => handleNewTurn()} disabled={rollCount === 0 ? "true" : ""}>Next Turn</button>
                     </G.DiceHolder>
                     <G.ActionArea>
                         {actionView === "trade" ? <Trade/> : ""}
