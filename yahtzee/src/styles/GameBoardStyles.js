@@ -381,3 +381,49 @@ export const GridScore = styled.div`
     border: solid black 1px;
     
 `
+
+export const ModDiv = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const Modal = styled.div`
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 40%;
+    width: 40%;
+    border: solid green 4px;
+    border-radius: 4px;
+    background: white;
+    & a {
+        height: 50px;
+        width: 75%;
+        border: solid black 4px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 15px 0; 
+        text-decoration: none;
+        color: black;
+    }
+`
+
+export const Button = styled.div`
+    height: 50px;
+    width: 75%;
+    border: solid black 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 15px 0;
+    
+`

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 import Hexagon from "react-hexagon";
 
@@ -11,6 +12,7 @@ import { addRoll, addRoundPoints, addBuildCount  } from "../features/gameMetaDat
 
 
 import * as G from "../styles/GameBoardStyles";
+import * as L from "../styles/LandingPageStyles";
 import Trade from "./Trade";
 import Build from "./Build";
 
@@ -28,7 +30,7 @@ const Game = () => {
     const total = useSelector(totalPoints);
     const buildState = useSelector(building);
     const [roundCount, setRoundCount] = useState(1);
-    const [gameActive, setGameActive] = useState("active");
+    const [gameActive, setGameActive] = useState(true);
 
 
     //Functions
@@ -66,7 +68,7 @@ const Game = () => {
 
     }
     //===== Start Game =====
-    // setRoundCount(1);
+    // all initial states will take care of this on initial mount in to room 
 
     //===== New Game ====== <- Call this when game is complete
     /**
@@ -80,13 +82,15 @@ const Game = () => {
      * reset building
      * reset rounds played
      */
+    const handleNewGame = () => {
 
-     //===== Turn Control ===== <- call this when complete turn is selected
+    }
+     //===== Turn Control =====
      const handleNewTurn = () => {
          setRollCount(0);
          setRoundCount(roundCount + 1);
-         if(roundCount > 15){
-            setGameActive("over")
+         if(roundCount = 15){
+            setGameActive(false)
          }
      }
 
@@ -97,6 +101,9 @@ const Game = () => {
        * Display some stats about game
        * Play again or return to lobby
        */
+      const handleGameOver = () => {
+
+      }
     
     //===== Roll =====
     // To allow for update on Roll
@@ -501,9 +508,17 @@ const Game = () => {
                     </G.Board>
                 </G.CenterBar>            
             </G.Table>
+        {!gameActive ?
+            <G.ModDiv>
+                <G.Modal>
+                    <h1>Great Game!</h1>
+                    <G.Button onClick={() => handleNewGame()}>Play Again</G.Button>
+                    <Link to="/">Back to Lobby</Link>
+                </G.Modal>
+            </G.ModDiv>
+        :
+        <></>}
         </G.Div>
-
-
     )
 }
 
