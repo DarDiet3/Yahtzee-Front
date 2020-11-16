@@ -221,7 +221,7 @@ export const gameBoardDataSlice = createSlice({
             },
             {
                 id: 3,
-                built: true,
+                built: false,
                 canBuild: false, 
                 points: 3,
                 resource: "sheep",
@@ -298,15 +298,6 @@ export const gameBoardDataSlice = createSlice({
         ]
     },
     reducers: {
-        toggleStateBuild: (state, action) => {
-            const list = action.payload.item;
-            const id = action.payload.id;
-            const newRoad = state.road;
-            
-            // state[list][id - 1]
-            console.log(newRoad)
-            console.log()
-        },
         setDice: (state, action) => {
             console.log("GotHere")
             console.log(action.payload)
@@ -327,7 +318,7 @@ export const gameBoardDataSlice = createSlice({
     }
 })
 
-export const { toggleStateBuild, setDice, setRoadList, setSettlementList, setCityList, setKnightList } = gameBoardDataSlice.actions;
+export const { setDice, setRoadList, setSettlementList, setCityList, setKnightList } = gameBoardDataSlice.actions;
 
 export const data = state => state.gameBoardData;
 export const hexList = state => state.gameBoardData.hexList;

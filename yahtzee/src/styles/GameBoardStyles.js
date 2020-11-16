@@ -126,17 +126,25 @@ export const Table = styled.div`
     align-items: center;
     justify-content: space-around;
     height: 98%;
-    width: 90%;
+    width: 75%;
     background: #2F3D41;
 `
 export const LeftBar = styled.div`
-    width: 25%;
+    width: 28%;
     height: 100%;
     border: solid blue 2px;
     display: flex;
     flex-direction column;
     align-items: center;
     justify-content: space-between;
+`
+export const CenterBar =  styled.div`
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 `
 export const DiceHolder = styled.div`
     height: 35%;
@@ -259,14 +267,14 @@ export const RoadHolder = styled.div`
     width: 40px;
 
     &.road_2, &.road_5, &.road_7, &.road_13{
-        transform: rotate(90deg) translate( 10px, 15px); 
+        transform: rotate(90deg) translate( 10px, 12px); 
     }
 
     &.road_0, &.road_3, &.road_6, &.road_9, &.road_11, &.road_15{
-        transform: rotate(-30deg) translateY(-4px);
+        transform: rotate(-30deg) translateY(-7px);
     }
     &.road_1, &.road_4, &.road_8, &.road_10, &.road_12, &.road_14, &.road_16{
-        transform: rotate(30deg) translate(-10px, 9px);
+        transform: rotate(30deg) translate(-10px, 5px);
     }
 
     &.canBuild {
@@ -277,8 +285,8 @@ export const RoadHolder = styled.div`
 `
 
 export const ScoreTrackGrid = styled.div`
-    height: 350px;
-    width: 350px;
+    height: 300px;
+    width: 300px;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     grid-template-rows: repeat(5, minmax(0, 1fr));

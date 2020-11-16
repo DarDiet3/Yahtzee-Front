@@ -29,63 +29,63 @@ export const gameMetaDataSlice = createSlice({
         roundPoints: [
             {
                 round: 1,
-                points: ""
+                points: 0
             },
             {
                 round: 2,
-                points: ""
+                points: 0
             },
             {
                 round: 3,
-                points: ""
+                points: 0
             },
             {
                 round: 4,
-                points: ""
+                points: 0
             },
             {
                 round: 5,
-                points: ""
+                points: 0
             },
             {
                 round: 6,
-                points: ""
+                points: 0
             },
             {
                 round: 7,
-                points: ""
+                points: 0
             },
             {
                 round: 8,
-                points: ""
+                points: 0
             },
             {
                 round: 9,
-                points: ""
+                points: 0
             },
             {
                 round: 10,
-                points: ""
+                points: 0
             },
             {
                 round: 11,
-                points: ""
+                points: 0
             },
             {
                 round: 12,
-                points: ""
+                points: 0
             },
             {
                 round: 13,
-                points: ""
+                points: 0
             },
             {
                 round: 14,
-                points: ""
+                points: 0
             },
             {
                 round: 15,
-                points: ""
+                points: 0
             }
         ], 
         totalPoints: 0,
@@ -107,6 +107,9 @@ export const gameMetaDataSlice = createSlice({
         },
         addRoundPoints: (state, action) => {
             console.log(action.payload)
+            const round = action.payload.round;
+            state.roundPoints = action.payload.list;
+            state.totalPoints += action.payload.list[round - 1].points;
             // add to total as well
         },
         addTrade: (state, action) => {
@@ -114,17 +117,21 @@ export const gameMetaDataSlice = createSlice({
         },
         setBuild: (state, action) => {
             state.building = action.payload;
+        },
+        addBuildCount: (state, action) => {
+            state.buildCounts[action.payload] += 1;   
         }
     }
 })
 
-export const { setCurrentUser, addRoll, addRoundPoints, addTrade, setBuild } = gameMetaDataSlice.actions;
+export const { setCurrentUser, addRoll, addRoundPoints, addTrade, setBuild, addBuildCount, setRoundPoints } = gameMetaDataSlice.actions;
 
 export const currentUser = state => state.gameMetaData.currentUser;
 export const diceRolledList = state => state.gameMetaData.diceRolled;
 export const roundPoints = state => state.gameMetaData.roundPoints;
 export const totalPoints = state => state.gameMetaData.totalPoints;
 export const building = state => state.gameMetaData.building;
+export const buildCounts = state => state.gameMetaData.buildCounts;
 export const gameMetaData = state => state.gameMetaData;
 
 

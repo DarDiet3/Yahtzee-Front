@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
-import { toggleCanBuild, setDice, setRoadList, setSettlementList, setCityList, setKnightList } from "../features/gameBoardDataSlice";
+import { setRoadList, setSettlementList, setCityList, setKnightList } from "../features/gameBoardDataSlice";
 import { setBuild } from "../features/gameMetaDataSlice";
 
 import * as A from "../styles/ActionBarStyles"
@@ -245,8 +245,9 @@ const Build = () => {
         dispatch(setBuild(type))
     }
 
-    const handleBuild = (e,) => {
+    const handleBuild = (e, type) => {
         e.preventDefault();
+
         
     }
     

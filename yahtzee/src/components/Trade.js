@@ -6,8 +6,7 @@ import { setDice } from "../features/gameBoardDataSlice";
 import { addTrade } from "../features/gameMetaDataSlice";
 
 import * as A from "../styles/ActionBarStyles";
-import * as G from "../styles/GameBoardStyles";
-import Game from "./Game";
+
 
 const Trade = () => {
     //state Variables
@@ -93,11 +92,6 @@ const Trade = () => {
             goldId.shift();
         }
         dispatch(setDice(availableResources));
-        console.log(tradesMade)
-        console.log(updateResources)
-        console.log(goldId)
-        console.log(availableResources)
-
     }
 
 
