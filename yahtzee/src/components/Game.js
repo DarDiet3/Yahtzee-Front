@@ -24,11 +24,11 @@ const Game = () => {
     let knights = useSelector(knightsList);
     const dice = useSelector(diceList);
     const resources = ["rock", "wheat", "sheep", "brick", "wood", "gold"];
-    const jokerList = ["rock", "wheat", , "sheep", "brick", "wood", "any"];
     const scoreBoard = useSelector(roundPoints);
     const total = useSelector(totalPoints);
     const buildState = useSelector(building);
     const [roundCount, setRoundCount] = useState(1);
+    const [gameActive, setGameActive] = useState("active");
 
 
     //Functions
@@ -65,7 +65,49 @@ const Game = () => {
     const toggleJoker = (type, id) => {
 
     }
+    //===== Start Game =====
+    setRoundCount(1);
 
+    //===== New Game ====== <- Call this when game is complete
+    /**
+     * Send game data to server for user
+     *      Update Leader Board (high Score)
+     * reset round count
+     * reset round points
+     * reset total points
+     * reset trades
+     * reset build counts
+     * reset building
+     * reset rounds played
+     */
+
+     //===== Turn Control ===== <- call this when complete turn is selected
+     /** For each turn:
+      * Require roll count to be greater than one before build or trade ability
+      * 
+      * On New turn:
+      * set roll count to zero
+      * turn count +=1
+      * check that turn count is not greater than 15....
+      *     if so, trigger game over
+      *
+      */
+     const handleNewTurn = () => {
+         setRollCount(0);
+         setRoundCount(roundCount + 1);
+         if(roundCount > 15){
+            
+         }
+     }
+
+      //======= Game Over =====
+      /**
+       * Modal stating game is over.
+       * Display final Score
+       * Display some stats about game
+       * Play again or return to lobby
+       */
+    
     //===== Roll =====
     // To allow for update on Roll
     const diceCopy = JSON.parse(JSON.stringify(dice));
@@ -288,6 +330,10 @@ const Game = () => {
                     dispatch(addBuildCount("knight"));
                     dispatch(setKnightList(knightList));
                     dispatch(setDice(diceCopy));
+                    break;
+                case "joker":
+                    break;
+                default:
                     break;
 
 
