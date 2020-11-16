@@ -209,7 +209,8 @@ export const gameBoardDataSlice = createSlice({
                 canBuild: true, 
                 points: 1,
                 resource: "rock",
-                jokerPlayed: false
+                jokerPlayed: false,
+                jokerCanPlay: false
             },
             {
                 id: 2,
@@ -217,7 +218,8 @@ export const gameBoardDataSlice = createSlice({
                 canBuild: false, 
                 points: 2,
                 resource: "wheat",
-                jokerPlayed: false
+                jokerPlayed: false,
+                jokerCanPlay: false
             },
             {
                 id: 3,
@@ -225,7 +227,8 @@ export const gameBoardDataSlice = createSlice({
                 canBuild: false, 
                 points: 3,
                 resource: "sheep",
-                jokerPlayed: false
+                jokerPlayed: false,
+                jokerCanPlay: false
             },
             {
                 id: 4,
@@ -233,7 +236,8 @@ export const gameBoardDataSlice = createSlice({
                 canBuild: false, 
                 points: 4,
                 resource: "wood",
-                jokerPlayed: false
+                jokerPlayed: false,
+                jokerCanPlay: false
             },
             {
                 id: 5,
@@ -241,7 +245,8 @@ export const gameBoardDataSlice = createSlice({
                 canBuild: false, 
                 points: 5,
                 resource: "brick",
-                jokerPlayed: false
+                jokerPlayed: false,
+                jokerCanPlay: false
             },
             {
                 id: 6,
@@ -249,7 +254,8 @@ export const gameBoardDataSlice = createSlice({
                 canBuild: false, 
                 points: 6,
                 resource: "any",
-                jokerPlayed: false
+                jokerPlayed: false,
+                jokerCanPlay: false
             }
         ],
         resourceDice: [

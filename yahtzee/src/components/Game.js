@@ -251,6 +251,44 @@ const Game = () => {
                     dispatch(setCityList(cityList));
                     dispatch(setDice(diceCopy));
                     break;
+                case "knight":
+                    roundScore[roundCount - 1].points += item.points;
+
+                    knightList[item.id - 1].built = true;
+                    knightList[item.id - 1].canBuild = false;
+                    knightList[item.id - 1].jokerCanPlay = true;
+                    
+                    diceCopy.map(die => {
+                        if(die.available){
+                            switch(die.resource){
+                                case "rock":
+                                    rockId.push(die.id);
+                                    break;
+                                case "wheat":
+                                    wheatId.push(die.id);
+                                    break;
+                                case "sheep":
+                                    sheepId.push(die.id);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    })
+
+                    idx1 = rockId[0] - 1;
+                    idx2 = sheepId[0] - 1;
+                    idx3 = wheatId[0] - 1;
+                    diceCopy[idx1].available = false;
+                    diceCopy[idx2].available = false;
+                    diceCopy[idx3].available = false;
+
+                    
+                    dispatch(addRoundPoints({list:roundScore, round: roundCount}));
+                    dispatch(addBuildCount("knight"));
+                    dispatch(setKnightList(knightList));
+                    dispatch(setDice(diceCopy));
+                    break;
 
 
             }
@@ -344,9 +382,9 @@ const Game = () => {
                             )
                         })}
                         {knights.map((joker, index) => {
-                            const canPlay = (buildState==="Knight" && !joker.jokerPlayed) ? "canPlay" : undefined;
-                            const played = joker.jokerPlayed ? "played" : undefined;
-                            const classList = classNames(`joker_${joker.id}`, `${joker.resource}`, "joker", `${canPlay}`, `${played}`);
+                            const canPlay = (buildState==="Knight" && joker.jokerCanPlay) ? "canPlay" : undefined;
+                            const availability = (joker.jokerPlayed || !joker.jokerCanPlay) ? "unavailable" : "available";
+                            const classList = classNames(`joker_${joker.id}`, `${joker.resource}`, "joker", `${canPlay}`, `${availability}`);
                             return(
                                 <G.Token
                                     key={index}
