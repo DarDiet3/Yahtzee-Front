@@ -9,6 +9,7 @@ import { currentUser } from "../features/gameMetaDataSlice";
 
 
 
+
 const Chat = () => {
     const activeUser = useSelector(currentUser);
     const [chatData, setChatData] = useState({
@@ -18,6 +19,7 @@ const Chat = () => {
     const [chatString, setChatString] = useState({
         messages: []
     })
+    const [canChat, setCanChat] = useState(false)
 
     useEffect(() => {
         const socket = io("https://settlers-of-deere-dice.herokuapp.com");

@@ -13,7 +13,9 @@ import { addData } from "../services/api_helper";
 
 
 import * as G from "../styles/GameBoardStyles";
+import * as H from "../styles/GeneralStyles";
 import * as L from "../styles/LandingPageStyles";
+
 import Trade from "./Trade";
 import Build from "./Build";
 
@@ -32,7 +34,7 @@ const Game = () => {
     const buildState = useSelector(building);
     const gameData = useSelector(gameMetaData);
     const [roundCount, setRoundCount] = useState(13);
-    const [gameActive, setGameActive] = useState(false);
+    const [gameActive, setGameActive] = useState(true);
 
     
 
@@ -61,10 +63,12 @@ const Game = () => {
 
     const toggleBuild = (type, id) => {
         setActionView("build");
+        setRollCount(3); // <- No more rolls when actions start
     }
 
     const toggleTrade = (type, id) => {
         setActionView("trade");
+        setRollCount(3); // <- No more rolls when actions start
     }
 
     const toggleJoker = (type, id) => {
@@ -77,8 +81,6 @@ const Game = () => {
     /**
      * X Send game data to server for user
      *      Update Leader Board (high Score)
-     * reset building
-     * reset rounds played
      */
     const handleNewGame = () => {
         addData(gameData);
@@ -99,7 +101,8 @@ const Game = () => {
              die.available = true;
              die.locked = false;
          })
-         dispatch(setDice(diceCopy))
+         dispatch(setDice(diceCopy));
+         setActionView("");
      }
 
      
@@ -120,7 +123,7 @@ const Game = () => {
     const diceCopy = JSON.parse(JSON.stringify(dice));
     const [diceData, setDiceData] = useState(diceCopy);
     const [rollCount, setRollCount] = useState(0);
-    const [actionView, setActionView] = useState("build");
+    const [actionView, setActionView] = useState("");
     
     
     const roll = () => {
@@ -354,7 +357,17 @@ const Game = () => {
     let dieIndex = 0;
     return (
         <G.Div>
-            <G.Table>
+            {!gameActive ?
+            <G.ModDiv>
+                <G.Modal>
+                    <H.H1>Great Game!</H.H1>
+                    <h2>Final Score: {total}</h2>
+                    <G.Button onClick={() => handleNewGame()}>Play Again</G.Button>
+                </G.Modal>
+            </G.ModDiv>
+        :
+        <></>}
+            <>
                 <G.LeftBar>
                     <G.DiceHolder>
                         <G.Dice>
@@ -366,14 +379,16 @@ const Game = () => {
                             return <G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)} key={index}>{dice.resource}</G.Die>
                         })}
                         </G.Dice>
-                        <button onClick={() => roll()} disabled={rollCount === 3 ? "true" : ""}>Roll</button>
-                        <button onClick={() => toggleBuild()} disabled={rollCount === 0 ? "true" : ""}>Let's Build</button>
-                        <button onClick={() => toggleTrade()} disabled={rollCount === 0 ? "true" : ""}>Let's Trade</button>
-                        <button onClick={() => toggleJoker()} disabled={rollCount === 0 ? "true" : ""}>Joker</button>
-                        <button onClick={() => handleNewTurn()} disabled={rollCount === 0 ? "true" : ""}>Next Turn</button>
-                        
+                        <G.TurnControl>
+                            <G.TurnButton onClick={() => roll()} disabled={rollCount === 3 ? "true" : ""}>Roll</G.TurnButton>
+                            <G.TurnButton onClick={() => toggleBuild()} disabled={rollCount === 0 ? "true" : ""}>Let's Build</G.TurnButton>
+                            <G.TurnButton onClick={() => toggleTrade()} disabled={rollCount === 0 ? "true" : ""}>Let's Trade</G.TurnButton>
+                            <G.TurnButton onClick={() => toggleJoker()} disabled={rollCount === 0 ? "true" : ""}>Joker</G.TurnButton>
+                            <G.TurnButton onClick={() => handleNewTurn()} disabled={rollCount === 0 ? "true" : ""}>Next Turn</G.TurnButton>
+                        </G.TurnControl>
                     </G.DiceHolder>
                     <G.ActionArea>
+                        {actionView === "" ? <G.Waiting></G.Waiting>: ""}
                         {actionView === "trade" ? <Trade/> : ""}
                         {actionView === "build" ? <Build/> : ""}
                     </G.ActionArea>
@@ -521,18 +536,7 @@ const Game = () => {
                 
                     </G.Board>
                 </G.CenterBar>            
-            </G.Table>
-        {!gameActive ?
-            <G.ModDiv>
-                <G.Modal>
-                    <h1>Great Game!</h1>
-                    <h2>Final Score: {total}</h2>
-                    <G.Button onClick={() => handleNewGame()}>Play Again</G.Button>
-                    <Link to="/">Back to Lobby</Link>
-                </G.Modal>
-            </G.ModDiv>
-        :
-        <></>}
+            </>
         </G.Div>
     )
 }

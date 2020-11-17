@@ -7,7 +7,8 @@ export const theme = {
     light: "#555555",
     highlight: "#2D7DD2",
     offWhite: "#F5F5F5",
-    primaryFont: '"Trebuchet MS", Helvetica, sans-serif'
+    primaryFont: '"Trebuchet MS", Helvetica, sans-serif',
+    secondaryFont: "arial"
 }
 
 export const abutton = `

@@ -1,27 +1,32 @@
 import styled from "styled-components";
-
+import { theme, abutton } from "../styles/GlobalTheme";
 
 
 export const Div = styled.div`
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 90vh;
-    background: #d5d5d5;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+    padding: 4px;
+    background-image: URL("/images/wooTable.jpg");
+    background-size: cover;
     align-items: center;
     justify-content: space-around;
+    box-shadow: inset 0 0 5px ${theme.light};
+    position: relative;
+    
     
 `
 
 export const Board = styled.div`
-    padding: 25px;
+    padding: 15px;
     display: grid;
     width: 450px;
     height: 411px;
     grid-template-columns: repeat(13, minmax(0, 3.25%));
     grid-template-rows: repeat(21, minmax(0, 3.25%));
     gap: 1.27% 3.75%;
-    background: lightblue;
+    background: #00B4D8;
     box-shadow: 0px 0px 5px navy;
     border-radius: 25px;
     align-items: center;
@@ -120,26 +125,24 @@ export const Board = styled.div`
         align-self: center;
     }
 `
-export const Table = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    height: 98%;
-    width: 75%;
-    background: #2F3D41;
-`
+// export const Table = styled.div`
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: space-around;
+//     height: 99%;
+//     width: 100%;
+// `
 export const LeftBar = styled.div`
-    width: 28%;
+    width: 45%;
     height: 100%;
-    border: solid blue 2px;
     display: flex;
     flex-direction column;
     align-items: center;
     justify-content: space-between;
 `
 export const CenterBar =  styled.div`
-    width: 70%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -149,22 +152,22 @@ export const CenterBar =  styled.div`
 export const DiceHolder = styled.div`
     height: 35%;
     width: 100%;
-    padding: 0 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: solid red 2px;
+    background: rgba(255, 215, 140, .5);
+    border-radius: 4px;
 `
 export const Dice = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
-    width: 60%;
+    width: 100%;
+    height: 85%;
     justify-content: space-between;
     align-items: center;
 `
-
 export const Die = styled.div`
     height: 70px;
     width: 70px;
@@ -198,12 +201,19 @@ export const Die = styled.div`
         filter: grayscale(80%);
     }
 `
-
+export const TurnControl = styled.div`
+    padding: 2.5%;    
+    height: 10%;
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+`
 export const ActionArea = styled.div`
     height: 60%;
     width: 100%;
     background: white;
     border: solid 4px black;
+    border-radius: 2px;
 `
 export const KnightHolder = styled.div`
     height: 30px;
@@ -321,12 +331,17 @@ export const RoadHolder = styled.div`
 `
 
 export const ScoreTrackGrid = styled.div`
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     grid-template-rows: repeat(5, minmax(0, 1fr));
     background: white;
+    font-family: ${theme.secondaryFont};
+    font-weight: lighter;
+    box-shadow: 0 0 5px black;
+    border: solid black 1px;
+
 
     & .score_1, .score_2, .score_3, .score_4, .score_5{
         grid-row: 1;
@@ -374,6 +389,7 @@ export const ScoreTrackGrid = styled.div`
         align-items: center;
         justify-content: center;
         font-size: 36px;
+        font-weight: 100;
     }
 `
 export const GridScore = styled.div`
@@ -384,12 +400,12 @@ export const GridScore = styled.div`
 `
 
 export const ModDiv = styled.div`
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, .45);
     display: flex;
     align-items: center;
@@ -404,27 +420,51 @@ export const Modal = styled.div`
     text-align: center;
     height: 40%;
     width: 40%;
-    border: solid green 4px;
+    border: solid ${theme.primary} 4px;
     border-radius: 4px;
-    background: white;
-    & a {
-        height: 50px;
-        width: 75%;
-        border: solid black 4px;
-        border-radius: 4px;
-        cursor: pointer;
-        margin: 15px 0; 
-        text-decoration: none;
-        color: black;
-    }
+    background: ${theme.offWhite};
+    font-family: ${theme.primaryFont};
+    color: ${theme.light};
 `
 
 export const Button = styled.div`
-    height: 50px;
-    width: 75%;
-    border: solid black 4px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 15px 0;
+    ${abutton}
     
 `
+export const TurnButton = styled.button`
+    font-family: ${theme.primaryFont};
+    height: 30px;
+    width: 18%;
+    border: solid ${theme.light} 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: ${theme.primary};
+    background: ${theme.offWhite};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px ${theme.light};
+    &: disabled {
+        opacity: 0.7;
+        background: ${theme.light};
+    }
+`
+export const Waiting = styled.div`
+    width: 100%; 
+    height: 100%;
+    background-image: url("/images/fallFarm.jpg");
+    background-size: cover;
+    filter: grayscale(80%);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: inset 0 0 3px ${theme.light};
+    & a {
+        z-index: 1;
+        ${abutton}
+    }
+`
+

@@ -17,12 +17,19 @@ export const Chats = styled.div`
     width: 100%;
     flex: 1;
     background: ${theme.offWhite};
-    font: ${theme.primaryFont};
+    font-family: ${theme.primaryFont};
     box-shadow: inset 0 0 5px ${theme.light};
 
-    &#messages { list-style-type: none; margin: 0; padding: 0; };
-    &#messages li { padding: 5px 10px; };
-    &#messages li:nth-child(odd) { background: #eee; };
+    & #messages { 
+        list-style-type: none; 
+        margin: 5px; 
+        padding: 0; 
+        
+    };
+    & #messages li { 
+        padding: 5px 10px; 
+    };
+    & #messages li:nth-child(odd) { background: #eee; };
 `
 
 export const ChatForm = styled.div`
