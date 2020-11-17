@@ -10,6 +10,8 @@ import Profile from "./components/Profile";
 import GameDisplay from "./components/GameDispaly";
 import Chat from "./components/Chat";
 import EditProfile from "./components/EditProfile";
+import MultiLobby from "./components/multiplayer/MultiLobby";
+import MultiplayerGame from "./components/multiplayer/MultiplayerGame";
 
 import { currentUser } from "./features/gameMetaDataSlice";
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="/profile" component={Profile}/>
           <Route path="/edit" component={EditProfile}/>
           <Route path="/game" component={GameDisplay}/>
+          <Route path="/multiGame" component={MultiplayerGame}/>
+          <Route path="/multiLobby" component={MultiLobby}/>
           <Route path="/chat" component={Chat}/>
         </Switch>
     :
