@@ -41,14 +41,12 @@ const EditProfile = () => {
 
     const HandleDeleteUser = async (e, user) => {
         await deleteUser(user);
-        // localStorage.removeItem('authToken');
-        // localStorage.removeItem("currentUserId");
-        // dispatch(setCurrentUser(""));
-        // setTimeout(() => {
-        //     history.push("/")
-        // }, 500)
-
-        // history.push("/")
+        localStorage.removeItem('authToken');
+        localStorage.removeItem("currentUserId");
+        dispatch(setCurrentUser(""));
+        setTimeout(() => {
+            history.push("/")
+        }, 500)
     }
 
     const [enterUser, setEnterUser] = useReducer(updateReducer, {...activeUser})
