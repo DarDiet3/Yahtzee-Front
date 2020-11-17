@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Die }from "./GameBoardStyles";
-import { theme } from "./GlobalTheme";
+import { theme, iconColor } from "./GlobalTheme";
 
 
 export const Div = styled.div`
@@ -20,6 +20,7 @@ export const MainDiv = styled.div`
     border: solid ${theme.light} 2px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 `
 export const H2 = styled.h2`
     font-family: ${theme.primaryFont};
@@ -135,8 +136,71 @@ export const HiddenCheck = styled.input`
 `
 export const BuildCostCard = styled.div`
     height: 150px;
-    width: 85%;
-    background: blue;
+    width: 75%;
+    margin: 5px;
+    background: ${theme.highlight};
+`
+export const BuildLine = styled.div`
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2px;
+    height: 25%;
+    width: 100%;
+    border-bottom: solid 2px lightblue;
+`
+export const BuildSquare = styled.div`
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.wheat {
+        background-image:url("images/icons/wheat.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.brick {
+        background-image:url("images/icons/brick.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.wood {
+        background-image:url("images/icons/wood.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.rock {
+        background-image:url("images/icons/rock.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.sheep {
+        background-image:url("images/icons/sheep.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.title {
+        background: navy;
+    }
+    &.road {
+        color: ${iconColor.road}
+    }
+    &.knight {
+        color: ${iconColor.knight}
+    }
+    &.settlement {
+        color: ${iconColor.settlement}
+    }
+    &.city {
+        color: ${iconColor.city}
+    }
 `
 export const BuildForm = styled.form`
 

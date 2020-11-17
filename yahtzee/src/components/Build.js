@@ -1,11 +1,13 @@
 import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
+import classNames from "classnames";
 
 import { roadsList, citiesList, settlementsList, knightsList, diceList } from "../features/gameBoardDataSlice";
 import { setRoadList, setSettlementList, setCityList, setKnightList } from "../features/gameBoardDataSlice";
 import { setBuild } from "../features/gameMetaDataSlice";
 
-import * as A from "../styles/ActionBarStyles"
+import * as A from "../styles/ActionBarStyles";
+import * as G from "../styles/GameBoardStyles";
 
 const Build = () => {
     //State variables
@@ -251,13 +253,25 @@ const Build = () => {
         
     }
     
+    const roadClassList = classNames("title", "road");
+    const knightClassList = classNames("title", "knight");
+    const settlementClassList = classNames("title", "settlement");
+    const cityClassList = classNames("title", "city");
 
     return (
-        <div>
+        <A.Div>
             <A.H2>Build Site</A.H2>
             <A.MainDiv>
                 <A.BuildCostCard>
-
+                    <A.BuildLine> 
+                        <A.BuildSquare className={roadClassList}>
+                            <G.RoadHolder>
+                                <svg width="35" height="10"><rect x="0" y="0" width="35" height="10" fill="currentColor" stroke="black" strokeWidth="3"/> </svg>
+                            </G.RoadHolder>
+                        </A.BuildSquare>
+                        <A.BuildSquare className={"brick"}></A.BuildSquare>
+                        <A.BuildSquare className={"wood"}></A.BuildSquare>
+                    </A.BuildLine>
                 </A.BuildCostCard>
                 <A.BuildForm>
                     <fieldset id="buildable">
@@ -283,7 +297,7 @@ const Build = () => {
                 }
                 </A.BuildForm>
             </A.MainDiv>
-        </div>
+        </A.Div>
         
     )
 }

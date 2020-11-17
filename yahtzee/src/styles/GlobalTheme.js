@@ -48,3 +48,14 @@ export const userForm = `
 
     }
 `
+
+export const iconColor = {
+    road: "lightgray",
+    buildRoad: "",
+    knight:"lightgray",
+    builtKnight:"",
+    settlement:"lightgray",
+    builtSettlement:"",
+    city:"lightgray",
+    builtCity:""
+}
