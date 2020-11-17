@@ -17,6 +17,7 @@ const Lobby = () => {
                     <Link to="/profile">My Stats</Link>
                     <Link to="/stats">All Stats</Link>
                     <button onClick={() => getScore(5)}>Top 5</button>
+                    <Link to="/chat">Chat</Link>
                 </L.OptionHolder>
             </L.BodyContainer>
         </div>

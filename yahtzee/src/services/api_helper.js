@@ -4,6 +4,7 @@ const api = axios.create({
     // baseURL:  "https://settlers-of-deere.herokuapp.com",
     baseURL: "http://localhost:3001"
 })
+// **** DONT FORGET TO CHANGE CHAT URL ******
 
 // ===== AUTH ======
 
@@ -53,6 +54,10 @@ export const getScore = async(number) => {
 //===== USER DATA ======
 export const getUserData = async(userId) => {
     const resp = await api.get(`/user/${userId}`);
-    console.log(resp.data)
+    return resp.data
+}
+
+export const editProfile = async(userData) => {
+    const resp = await api.put("/user/edit", userData);
     return resp.data
 }

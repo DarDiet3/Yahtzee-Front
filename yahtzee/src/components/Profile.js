@@ -15,6 +15,7 @@ const Profile = () => {
     console.log(activeUser)
     const[userData, setUserData] = useState([])
     console.log(userData)
+    
     useEffect(() => {
         let data = getUserData(activeUser.id);
         setUserData(data)
@@ -37,6 +38,7 @@ const Profile = () => {
                     <P.BioBox>
                         <P.ProfPic src={activeUser.profileImg}/>
                         <h1>{activeUser.username}</h1>
+                        <Link to="/edit">Edit Profile</Link>
                     </P.BioBox>
                     <P.SubBox>
                         <P.StatsBox>
