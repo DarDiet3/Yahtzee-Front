@@ -61,3 +61,9 @@ export const editProfile = async(userData) => {
     const resp = await api.put("/user/edit", userData);
     return resp.data
 }
+
+export const deleteUser = async(user) => {
+    console.log(user)
+    await api.delete(`/user/delete/${user}`);
+    
+}

@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import { useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { signupUser, loginUser, VerifyUser} from "../services/api_helper";
+import { signupUser } from "../services/api_helper";
 import { setCurrentUser } from "../features/gameMetaDataSlice";
 
 import * as L from "../styles/LandingPageStyles";
@@ -44,10 +44,6 @@ const SignupForm = () => {
         history.push("/") //TODO: Redirect to profile
     }
     
-    const HandleLogout = () => {
-        localStorage.removeItem('authoToken');
-        // useDispatch(setCurrentUser(""));
-    }
 
 
     return(

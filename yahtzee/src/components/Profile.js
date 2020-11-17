@@ -17,7 +17,9 @@ const Profile = () => {
     console.log(userData)
     
     useEffect(() => {
+        console.log(activeUser)
         let data = getUserData(activeUser.id);
+        console.log(data)
         setUserData(data)
     }, [])
 
