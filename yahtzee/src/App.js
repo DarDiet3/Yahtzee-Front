@@ -9,6 +9,7 @@ import Lobby from "./components/Lobby";
 import Profile from "./components/Profile";
 import GameDisplay from "./components/GameDispaly";
 import Chat from "./components/Chat";
+import EditProfile from "./components/EditProfile";
 
 import { currentUser } from "./features/gameMetaDataSlice";
 
@@ -18,12 +19,13 @@ function App() {
   return (
     <div className="App">
       {activeUser ? 
-        <>
-        <Route exact path="/" component={Lobby}/>
-        <Route path="/profile" component={Profile}/>
-        <Route path="/game" component={GameDisplay}/>
-        <Route path="/chat" component={Chat}/>
-        </>
+        <Switch>
+          <Route exact path="/" component={Lobby}/>
+          <Route path="/profile" component={Profile}/>
+          <Route path="/edit" component={EditProfile}/>
+          <Route path="/game" component={GameDisplay}/>
+          <Route path="/chat" component={Chat}/>
+        </Switch>
     :
     <>
         <Route exact path="/" component={LandingPage}/>

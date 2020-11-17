@@ -59,3 +59,25 @@ export const BodyContainer = styled.div`
     height: 85vh;
     background: purple;
 `
+
+export const Modal = styled.div`
+display: flex;
+flex-flow: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+height: 40%;
+width: 40%;
+border: solid green 4px;
+border-radius: 4px;
+& a {
+    height: 50px;
+    width: 75%;
+    border: solid black 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 15px 0; 
+    text-decoration: none;
+    color: black;
+}
+`
