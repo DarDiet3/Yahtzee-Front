@@ -123,7 +123,7 @@ const Game = () => {
     const diceCopy = JSON.parse(JSON.stringify(dice));
     const [diceData, setDiceData] = useState(diceCopy);
     const [rollCount, setRollCount] = useState(0);
-    const [actionView, setActionView] = useState("");
+    const [actionView, setActionView] = useState("main");
     
     
     const roll = () => {
@@ -376,7 +376,10 @@ const Game = () => {
                             let available = dice.available ? "" : "unavailable";
                             let classlist = classNames(`${dice.resource}`, `${active}`, `${available}`);
                             dieIndex +=1;
-                            return <G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)} key={index}>{dice.resource}</G.Die>
+                            return (<G.Die className={classlist} onClick={() => toggleLock(dice.id - 1)} key={index}>
+                                <G.DieImg className={dice.resource}/>
+                                </G.Die>
+                            )
                         })}
                         </G.Dice>
                         <G.TurnControl>
@@ -388,7 +391,7 @@ const Game = () => {
                         </G.TurnControl>
                     </G.DiceHolder>
                     <G.ActionArea>
-                        {actionView === "" ? <G.Waiting></G.Waiting>: ""}
+                        {actionView === "main" ? <G.Waiting></G.Waiting>: ""}
                         {actionView === "trade" ? <Trade/> : ""}
                         {actionView === "build" ? <Build/> : ""}
                     </G.ActionArea>

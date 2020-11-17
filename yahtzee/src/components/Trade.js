@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import classNames from "classnames";
 
 import { diceList } from "../features/gameBoardDataSlice";
 import { setDice } from "../features/gameBoardDataSlice";
@@ -96,7 +97,7 @@ const Trade = () => {
 
 
     return(
-        <div>
+        <A.Div>
             <A.H2>Trade Post</A.H2>
             <A.MainDiv>
                 {availableGold.length < 2 ? 
@@ -107,27 +108,26 @@ const Trade = () => {
                     <p><A.Bold>Select Resource</A.Bold></p>
                     <A.ResourceForm onSubmit={(e) => handleTrade(e, updateResources)}>
                         {resources.map((resource, index) => {
-                            console.log(resource)
                             return(
-                                <div>
-                                    <label for={`select_${resource.resource}`}>
-                                        <input  
+                                <div key={index}>
+                                    <label for={`select_${resource.resource}`}  >
+                                        <input 
                                         id={`select_${resource.resource}`} 
                                         name={`${resource.resource}`} 
                                         type="checkbox"  
                                         onClick={() => handleChange(resource)}
                                         />
-                                        <A.ResourceLabel className={`${resource.resource}`}/></label>
-                                    
+                                        <A.Label className={`${resource.checked ? "selected" : "not"}`}><A.ResourceLabel className={`${resource.resource}`} /></A.Label>
+                                        </label>
                                 </div>
                             )
                         })}
-                        <button type="submit">Make Trade</button>
+                        <A.ActButton type="submit">Make Trade</A.ActButton>
                     </A.ResourceForm>
                 </A.TradePost>
             }
             </A.MainDiv>
-        </div>
+        </A.Div>
     )
     
 }

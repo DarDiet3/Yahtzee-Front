@@ -171,27 +171,10 @@ export const Dice = styled.div`
 export const Die = styled.div`
     height: 70px;
     width: 70px;
-    backgroud: white;
-    border: solid black 1px;
+    background: ${theme.offWhite};
+    border: solid black 3px;
     border-radius: 6px;
-    &.wheat {
-        background: tan;
-    }
-    &.brick {
-        background: red;
-    }
-    &.wood {
-        background: brown;
-    }
-    &.rock {
-        background: darkgray
-    }
-    &.sheep {
-        background: white;
-    }
-    &.gold {
-        background: gold;
-    }
+    padding: 2px;
     &.locked {
         box-shadow: 0px 0px 8px 4px red;
     }
@@ -201,6 +184,55 @@ export const Die = styled.div`
         filter: grayscale(80%);
     }
 `
+export const DieImg = styled.div`
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
+    &.wheat {
+        background: tan;
+        background-image:url("images/icons/wheat.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.brick {
+        background: salmon;
+        background-image:url("images/icons/brick.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.wood {
+        background: brown;
+        background-image:url("images/icons/wood.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.rock {
+        background: darkgray;
+        background-image:url("images/icons/rock.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.sheep {
+        background: white;
+        background-image:url("images/icons/sheep.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.gold {
+        background: gold;
+        background-image:url("images/icons/gold.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+`
+
 export const TurnControl = styled.div`
     padding: 2.5%;    
     height: 10%;

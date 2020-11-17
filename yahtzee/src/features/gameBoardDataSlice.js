@@ -264,42 +264,48 @@ export const gameBoardDataSlice = createSlice({
                 resource: "rock",
                 locked: false,
                 toBuild: false,
-                available: true
+                available: true,
+                img: "/images/icons/rock.png"
             },
             {
                 id: 2,
                 resource: "wheat",
                 locked: false,
                 toBuild: false,
-                available: true
+                available: true,
+                img: "/images/icons/wheat.png"
             },
             {
                 id: 3,
                 resource: "sheep",
                 locked: false,
                 toBuild: false,
-                available: true
+                available: true,
+                img: "/images/icons/sheep.png"
             },
             {
                 id: 4,
                 resource: "brick",
                 locked: false,
                 toBuild: false,
-                available: true
+                available: true,
+                img: "/images/icons/brick.png"
             },
             {
                 id: 5,
                 resource: "wood",
                 locked: false,
                 toBuild: false,
-                available: true
+                available: true,
+                img: "/images/icons/wood.png"
             },
             {
                 id: 6,
                 resource: "gold",
                 locked: false,
                 toBuild: false,
-                available: true
+                available: true,
+                img: "/images/icons/gold.png"
             }
         ]
     },

@@ -1,58 +1,138 @@
 import styled from "styled-components";
 import { Die }from "./GameBoardStyles";
+import { theme } from "./GlobalTheme";
 
+
+export const Div = styled.div`
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 3px ${theme.light};
+    display: flex;
+    flex-direction: column;
+    font-family: ${theme.primaryFont};
+`
 export const MainDiv = styled.div`
-    height: 60%;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border: solid ${theme.light} 2px;
     display: flex;
     flex-direction: column;
 `
 export const H2 = styled.h2`
+    font-family: ${theme.primaryFont};
+    color: ${theme.offWhite}
     margin: 0;
+    text-align: center;
+
 `
 export const TradePost = styled.div`
-    height: 250px;
-    width: 95%;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
     border: solid lemonchiffon 1px;
     background: lemonchiffon;
     display: flex;
     flex-direction: column;
+    text-align: center;
 `
 export const Bold = styled.span`
     margin: 0;
     font-weight: bold;
 `
-export const ResourceLabel = styled.div`
-    height: 35px;
-    width: 35px;
-    backgroud: white;
-    border: solid black 1px;
-    border-radius: 6px;
-    &.wheat {
-        background: tan;
-    }
-    &.brick {
-        background: red;
-    }
-    &.wood {
-        background: brown;
-    }
-    &.rock {
-        background: darkgray
-    }
-    &.sheep {
-        background: white;
-    }
-    &.gold {
-        background: gold;
-    }
-    & :checked {
+export const Label = styled(Die)`
+    display: flex;
+    &.selected {
         box-shadow: 0px 0px 8px 4px gold;
     }
 `
-export const ResourceForm = styled.form`
-
+export const ActButton = styled.button`
+    font-family: ${theme.primaryFont};
+    height: 30px;
+    width: 45%;
+    border: solid ${theme.light} 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: ${theme.offWhite};
+    background: ${theme.primary};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px ${theme.light};
+    &: disabled {
+        opacity: 0.7;
+        background: ${theme.light};
+    }
 `
 
+export const ResourceLabel = styled.div`
+    height: 98%;
+    width: 98%;
+    backgroud: white;
+    border: solid black 1px;
+    border-radius: 2px;
+    cursor: pointer;
+    &.wheat {
+        background: tan;
+        background-image:url("images/icons/wheat.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.brick {
+        background: salmon;
+        background-image:url("images/icons/brick.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.wood {
+        background: brown;
+        background-image:url("images/icons/wood.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.rock {
+        background: darkgray;
+        background-image:url("images/icons/rock.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.sheep {
+        background: white;
+        background-image:url("images/icons/sheep.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    &.gold {
+        background: gold;
+        background-image:url("images/icons/gold.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+`
+export const ResourceForm = styled.form`
+    display: flex;
+    flex-flow: row wrap;
+    align-itmes: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+
+    & input {
+            display: none;
+        }
+`
+export const HiddenCheck = styled.input`
+    display: none;
+`
 export const BuildCostCard = styled.div`
     height: 150px;
     width: 85%;
