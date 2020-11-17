@@ -20,7 +20,7 @@ const Chat = () => {
     })
 
     useEffect(() => {
-        const socket = io("http://localhost:3001");
+        const socket = io("https://settlers-of-deere-dice.herokuapp.com");
         socket.on("RECEIVE_MESSAGE", (data) => {
             addMessage(data)
         })
@@ -56,13 +56,15 @@ const Chat = () => {
 
     return(
         <C.ChatDiv>
-            <ul id="messages">
-                {chatString.messages.map((message, index) => {
-                    return (
-                        <li>{message.author}: {message.message}</li>
-                    )
-                })}
-            </ul>
+            <C.Chats>
+                <ul id="messages">
+                    {chatString.messages.map((message, index) => {
+                        return (
+                            <li>{message.author}: {message.message}</li>
+                        )
+                    })}
+                </ul>
+            </C.Chats>
             <C.ChatForm>
                 <C.CInput
                     id="m" 
@@ -70,7 +72,8 @@ const Chat = () => {
                     value={chatData.message}
                     onChange={(e) => {handleChange(e)}}
                     onKeyDown={(e) => enterMessage(e)}
-                    />
+                    type={"text"}
+                    >{chatData.message}</C.CInput>
                     <C.ChatButton onClick={(e) => sendMessage(e)}>Send</C.ChatButton>
             </C.ChatForm>
         </C.ChatDiv>

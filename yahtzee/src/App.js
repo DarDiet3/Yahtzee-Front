@@ -17,6 +17,7 @@ import { theme } from "./styles/GlobalTheme";
 
 function App() {
   const activeUser = useSelector(currentUser);
+  console.log(activeUser)
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -29,6 +30,13 @@ function App() {
             <Route path="/chat" component={Chat} />
           </Switch>
           :
+        activeUser ?
+          <Switch>
+            <Route exact path="/" component={Lobby} />
+            <Route path="/game" component={GameDisplay} />
+            <Route path="/chat" component={Chat} />
+          </Switch>
+        :
           <>
             <Route exact path="/" component={LandingPage} />
             <Route path="/signup" component={SignupForm} />
