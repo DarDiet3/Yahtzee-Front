@@ -8,17 +8,18 @@ import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList 
 import { setDice, setRoadList, setSettlementList, setCityList, setKnightList, resetBoard  } from "../features/gameBoardDataSlice";
 
 import { diceRolledList, roundPoints, totalPoints, building, buildCounts, gameMetaData } from "../features/gameMetaDataSlice";
-import { addRoll, addRoundPoints, addBuildCount, resetStats  } from "../features/gameMetaDataSlice";
+import { addRoll, addRoundPoints, addBuildCount, resetStats, setBuild  } from "../features/gameMetaDataSlice";
 import { addData } from "../services/api_helper";
 
 
 import * as G from "../styles/GameBoardStyles";
 import * as H from "../styles/GeneralStyles";
-import * as L from "../styles/LandingPageStyles";
+
 
 import Trade from "./Trade";
 import Build from "./Build";
 import Joker from "./Joker";
+import CostCard from "./BuildCostCard";
 
 const Game = () => {
     // State Variables
@@ -34,33 +35,12 @@ const Game = () => {
     const total = useSelector(totalPoints);
     const buildState = useSelector(building);
     const gameData = useSelector(gameMetaData);
-    const [roundCount, setRoundCount] = useState(13);
+    const [roundCount, setRoundCount] = useState(1);
     const [gameActive, setGameActive] = useState(true);
-
+    const [sScoreBoard, setSScoreBoard] = useState(scoreBoard);
     
 
     //Functions
-    const toggleCanBuild = (type, id) => {
-        let editList;
-        switch (type) {
-            case "road":
-                console.log("road")
-                return editList = [...roads]
-            case "city":
-                console.log("city")
-                return editList = [...cities]
-            case "settlement":
-                console.log("settlement")
-                return editList = [...settlements]
-            case "knight":
-                console.log("knight")
-                return editList = [...knights]
-            default:
-                console.log("missed")
-        }
-        editList[id - 1].canBuild = !editList[id - 1].canBuild;
-        return editList;
-    }
 
     const toggleBuild = (type, id) => {
         setActionView("build");
@@ -94,6 +74,7 @@ const Game = () => {
      //===== Turn Control =====
      const handleNewTurn = () => {
          setRollCount(0);
+         dispatch(addRoundPoints({list:sScoreBoard, round: roundCount}));
          setRoundCount(roundCount + 1);
          if(roundCount === 15){
             setGameActive(false)
@@ -116,9 +97,7 @@ const Game = () => {
        * Display some stats about game
        * Play again or return to lobby
        */
-    const handleGameOver = () => {
-        
-    }
+
     
     //===== Roll =====
     // To allow for update on Roll
@@ -170,8 +149,8 @@ const Game = () => {
         
         console.log("here")
         console.log(item)
-        if(item.canBuild){
-            let roundScore = JSON.parse(JSON.stringify(scoreBoard));
+        if(item.canBuild && actionView === "build" && buildState.toLowerCase() === type){
+            let roundScore = JSON.parse(JSON.stringify(sScoreBoard));
             let roadList = JSON.parse(JSON.stringify(roads));
             let settlementList = JSON.parse(JSON.stringify(settlements));
             let cityList = JSON.parse(JSON.stringify(cities));
@@ -219,11 +198,14 @@ const Game = () => {
                     idx2 = woodId[0] - 1;
                     diceCopy[idx1].available = false;
                     diceCopy[idx2].available = false;
+                    brickId.unshift();
+                    woodId.unshift();
 
-                    dispatch(addRoundPoints({list:roundScore, round: roundCount}));
+                    setSScoreBoard(roundScore);
                     dispatch(addBuildCount("road"));
                     dispatch(setRoadList(roadList));
                     dispatch(setDice(diceCopy));
+                    dispatch(setBuild(true))
                     break;
                 case "settlement":
                     console.log(roundScore)
@@ -265,11 +247,16 @@ const Game = () => {
                     diceCopy[idx2].available = false;
                     diceCopy[idx3].available = false;
                     diceCopy[idx4].available = false;
+                    brickId.unshift();
+                    woodId.unshift();
+                    sheepId.unshift();
+                    wheatId.unshift();
                     
                     dispatch(addRoundPoints({list:roundScore, round: roundCount}));
                     dispatch(addBuildCount("settlement"));
                     dispatch(setSettlementList(settlementList));
                     dispatch(setDice(diceCopy));
+                    dispatch(setBuild(true));
                     break;
                 case "city":
                     roundScore[roundCount - 1].points += item.points;
@@ -303,10 +290,11 @@ const Game = () => {
                     diceCopy[idx4].available = false;
                     diceCopy[idx5].available = false;
                     
-                    dispatch(addRoundPoints({list:roundScore, round: roundCount}));
+                    setSScoreBoard(roundScore);
                     dispatch(addBuildCount("city"));
                     dispatch(setCityList(cityList));
                     dispatch(setDice(diceCopy));
+                    dispatch(setBuild(true));
                     break;
                 case "knight":
                     roundScore[roundCount - 1].points += item.points;
@@ -339,12 +327,15 @@ const Game = () => {
                     diceCopy[idx1].available = false;
                     diceCopy[idx2].available = false;
                     diceCopy[idx3].available = false;
-
+                    rockId.unshift();
+                    sheepId.unshift();
+                    wheatId.unshift();
                     
-                    dispatch(addRoundPoints({list:roundScore, round: roundCount}));
+                    setSScoreBoard(roundScore);
                     dispatch(addBuildCount("knight"));
                     dispatch(setKnightList(knightList));
                     dispatch(setDice(diceCopy));
+                    dispatch(setBuild(true));
                     break;
                 case "joker":
                     break;
@@ -393,7 +384,7 @@ const Game = () => {
                         </G.TurnControl>
                     </G.DiceHolder>
                     <G.ActionArea>
-                        {actionView === "main" ? <G.Waiting></G.Waiting>: ""}
+                        {actionView === "main" ? <G.Waiting><CostCard/></G.Waiting>: ""}
                         {actionView === "trade" ? <Trade/> : ""}
                         {actionView === "build" ? <Build/> : ""}
                         {actionView === "joker" ? <Joker/> : ""}
@@ -518,7 +509,7 @@ const Game = () => {
                         {cities.map((city, index)=> {
                             const canBuild = (buildState==="City" && city.canBuild) ? "canBuild" : undefined;
                             const dBuild = city.built ? "dBuild" : undefined;
-                            const classList = classNames(`city_${city.id}`, "city", `p_${canBuild}`, `${dBuild}`);
+                            const classList = classNames(`city_${city.id}`, "city", `p_${canBuild}`, `${dBuild}`, `city_${dBuild}`);
                             return(
                                 <G.IconText key={index} className={classList} onClick={(e)=>{handleBuild(e,"city", city)}}>
                                     {city.points}

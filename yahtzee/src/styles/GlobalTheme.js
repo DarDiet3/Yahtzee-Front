@@ -51,11 +51,11 @@ export const userForm = `
 
 export const iconColor = {
     road: "lightgray",
-    buildRoad: "",
-    knight:"lightgray",
-    builtKnight:"",
-    settlement:"lightgray",
-    builtSettlement:"",
-    city:"lightgray",
-    builtCity:""
+    builtRoad: "black",
+    knight: "lightgray",
+    builtKnight: "navy",
+    settlement: "lightgray",
+    builtSettlement: "orange",
+    city: "lightgray",
+    builtCity:"orange"
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme, abutton } from "../styles/GlobalTheme";
+import { theme, abutton, iconColor } from "../styles/GlobalTheme";
 
 
 export const Div = styled.div`
@@ -13,9 +13,7 @@ export const Div = styled.div`
     align-items: center;
     justify-content: space-around;
     box-shadow: inset 0 0 5px ${theme.light};
-    position: relative;
-    
-    
+    position: relative;    
 `
 
 export const Board = styled.div`
@@ -251,11 +249,14 @@ export const KnightHolder = styled.div`
     height: 30px;
     width: 30px;
     margin-left: -7.5px;
-    color: gray;
+    color: ${iconColor.knight};
     filter: drop-shadow(0 0 3px navy);
     &.canBuild {
         filter: drop-shadow(0 0 6px yellow);
         cursor: pointer; 
+    }
+    &.dBuild {
+        color: ${iconColor.builtKnight};
     }
 `
 export const Token = styled.div`
@@ -273,21 +274,45 @@ export const Token = styled.div`
     box-shadow: 0 0 2px black;
     &.wheat {
         background: tan;
+        background-image:url("images/icons/wheat.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
     &.brick {
-        background: red;
+        background: salmon;
+        background-image:url("images/icons/brick.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
     &.wood {
         background: brown;
+        background-image:url("images/icons/wood.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
     &.rock {
-        background: darkgray
+        background: darkgray;
+        background-image:url("images/icons/rock.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
     &.sheep {
         background: white;
+        background-image:url("images/icons/sheep.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
-    &.gold {
+    &.any {
         background: gold;
+        background-image:url("images/icons/question-mark.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
     &.unavailable {
         box-shadow: none;
@@ -305,6 +330,9 @@ export const SettlementHolder = styled.div`
         filter: drop-shadow(0 0 6px yellow); 
         cursor: pointer;
     }
+    &.dBuild {
+        color: ${iconColor.builtSettlement};
+    }
 `
 export const CityHolder = styled.div`
     height: 40px;
@@ -317,14 +345,18 @@ export const CityHolder = styled.div`
         filter: drop-shadow(0 0 6px yellow); 
         cursor: pointer;
     }
+    &.dBuild {
+        color: ${iconColor.builtCity};
+    }
 `
 
-export const IconText = styled.a`
+export const IconText = styled.div`
     text-align: center;
     font-size: 16px;
     z-index: 1;
     padding-top: 10.5px;
-
+    border: solid transparent .5px;
+    font-family: ${theme.primaryFont};
     &.city {
         font-weight: bold;
         background: #F5F5F5;
@@ -333,6 +365,9 @@ export const IconText = styled.a`
         margin: 0;
         margin-top: 15px;
         padding: 0;
+    }
+    &.city_dBuild {
+        background: ${iconColor.builtCity};
     }
     &.p_canBuild {
         cursor: pointer;
@@ -358,6 +393,9 @@ export const RoadHolder = styled.div`
     &.canBuild {
         filter: drop-shadow(0 0 6px yellow); 
         cursor: pointer;
+    }
+    &.dBuild {
+        color: ${iconColor.builtRoad};
     }
     
 `

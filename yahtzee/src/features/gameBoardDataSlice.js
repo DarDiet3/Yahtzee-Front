@@ -43,7 +43,7 @@ export const gameBoardDataSlice = createSlice({
             {
                 id: 2,
                 points: 1,
-                built: true,
+                built: false,
                 canBuild: false
             },
             {
@@ -61,7 +61,7 @@ export const gameBoardDataSlice = createSlice({
             {
                 id: 5,
                 points: 1,
-                built: true,
+                built: false,
                 canBuild: false
             },
             {
@@ -141,8 +141,8 @@ export const gameBoardDataSlice = createSlice({
         cities: [
             {
                 id: 1, 
-                built: true,
-                canBuild: false,
+                built: false,
+                canBuild: true,
                 points: 7
             },
             {

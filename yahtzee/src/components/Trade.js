@@ -91,6 +91,7 @@ const Trade = () => {
             availableResources[idx2].available = false;
             goldId.shift();
             goldId.shift();
+            console.log(availableResources)
         }
         dispatch(setDice(availableResources));
     }
