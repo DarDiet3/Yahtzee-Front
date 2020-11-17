@@ -6,6 +6,7 @@ import Header from "./Header";
 import EditProfile from "./EditProfile";
 import * as L from "../styles/LandingPageStyles";
 import * as P from "../styles/ProfileStyles";
+import * as H from "../styles/GeneralStyles";
 
 import { currentUser } from "../features/gameMetaDataSlice";
 import { getUserData } from "../services/api_helper";
@@ -27,10 +28,10 @@ const Profile = () => {
         activeUser.username === "guest" ?
             <L.Div>
                 <L.Modal>
-                    <h1>Sorry, you must be signed in to save your stats!</h1>
-                    <Link to="/signup">Sign Up</Link>
-                    <Link to="/login">Log In</Link>
-                    <Link to="/">Return to Lobby</Link>
+                    <H.H1>Sorry, you must be signed in to save your stats!</H.H1>
+                    <Link to="/signup" className={"landing"}>Sign Up</Link>
+                    <Link to="/login" className={"landing"}>Log In</Link>
+                    <Link to="/" className={"landing"}>Return to Lobby</Link>
                 </L.Modal>
             </L.Div>
             :

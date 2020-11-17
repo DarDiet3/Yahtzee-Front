@@ -20,7 +20,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        {activeUser ?
+        {activeUser && activeUser.id !== 1 ?
           <Switch>
             <Route exact path="/" component={Lobby} />
             <Route path="/profile" component={Profile} />

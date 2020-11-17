@@ -23,17 +23,12 @@ const Header = () => {
 
     return (
         <H.Header>
-            <H.H1>Yahtzee</H.H1>
+            <H.TitleHolder>
+                <H.H1><Link to="/">Settlers of Deere</Link></H.H1>
+            </H.TitleHolder>
             <H.NavBar>
-                <H.NavButton>
-                    <Link to="/">
-                    {/* Link to the lobby page eventually */}
-                    Lobby
-                    </Link>
-                </H.NavButton>
-                <H.NavButton>
-                    <Link to="/profile">Profile</Link>
-                </H.NavButton>
+                <Link to="/"><H.NavButton>Lobby</H.NavButton></Link>
+                <Link to="/profile"><H.NavButton>Profile</H.NavButton></Link> 
                 <H.NavButton onClick={() => HandleLogout()}>
                     Log Out
                 </H.NavButton>
