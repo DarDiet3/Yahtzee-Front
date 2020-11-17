@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "./GlobalTheme";
 
 export const Header = styled.header`
     height: 10vh;
@@ -40,10 +41,11 @@ export const NavBar = styled.div`
     justify-content: space-between;
 `
 export const H1 = styled.h1`
-    font-family: arial;
+    font-family: ${theme.primaryFont};
     color: white;
     margin: 0;
 `
+
 
 export const BodyContainer = styled.div`
     width: 100vw;
