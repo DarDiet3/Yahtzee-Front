@@ -18,6 +18,7 @@ import * as L from "../styles/LandingPageStyles";
 
 import Trade from "./Trade";
 import Build from "./Build";
+import Joker from "./Joker";
 
 const Game = () => {
     // State Variables
@@ -72,7 +73,8 @@ const Game = () => {
     }
 
     const toggleJoker = (type, id) => {
-
+        setActionView("joker");
+        setRollCount(3);
     }
     //===== Start Game =====
     // all initial states will take care of this on initial mount in to room 
@@ -102,7 +104,7 @@ const Game = () => {
              die.locked = false;
          })
          dispatch(setDice(diceCopy));
-         setActionView("");
+         setActionView("main");
      }
 
      
@@ -394,6 +396,7 @@ const Game = () => {
                         {actionView === "main" ? <G.Waiting></G.Waiting>: ""}
                         {actionView === "trade" ? <Trade/> : ""}
                         {actionView === "build" ? <Build/> : ""}
+                        {actionView === "joker" ? <Joker/> : ""}
                     </G.ActionArea>
                 </G.LeftBar>
                 <G.CenterBar>

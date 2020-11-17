@@ -135,7 +135,7 @@ export const HiddenCheck = styled.input`
     display: none;
 `
 export const BuildCostCard = styled.div`
-    height: 150px;
+    height: 210px;
     width: 75%;
     margin: 5px;
     background: ${theme.highlight};
@@ -145,7 +145,7 @@ export const BuildLine = styled.div`
     grid-template-rows: 1fr;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 2px;
-    height: 25%;
+    height: 24%;
     width: 100%;
     border-bottom: solid 2px lightblue;
 `
@@ -203,5 +203,10 @@ export const BuildSquare = styled.div`
     }
 `
 export const BuildForm = styled.form`
-
+    padding: 10px;
+    & p {
+        margin: 0;
+        margin-top: 5px;
+        text-align: center;
+    }
 `
