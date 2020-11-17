@@ -1,11 +1,13 @@
 import React, { useReducer } from "react";
 import { useDispatch} from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+
 
 import { signupUser } from "../services/api_helper";
 import { setCurrentUser } from "../features/gameMetaDataSlice";
 
 import * as L from "../styles/LandingPageStyles";
+import * as H from "../styles/GeneralStyles";
 
 const SignupForm = () => {
     const dispatch = useDispatch();
@@ -49,8 +51,8 @@ const SignupForm = () => {
     return(
         <L.Div>
             <L.Modal>
-                <h1>Welcome to the team!</h1>
-                <form onSubmit={(e) => HandleSignup(e, enterUser)}>
+                <H.H1>Welcome to the team!</H.H1>
+                <L.Form onSubmit={(e) => HandleSignup(e, enterUser)}>
                     <input
                         type="text"
                         name="name"
@@ -79,8 +81,9 @@ const SignupForm = () => {
                         onChange={e => setEnterUser({type: "PASSWORD_CHANGED", payload: e.target.value})}
                         placeholder="Password"
                     />
-                    <input type="submit" value="Sign Up" />
-                </form>
+                    <L.SButton type="submit">Sign Up</L.SButton>
+                </L.Form>
+                <p>Already playing? <Link to="/login">Log In</Link></p>
             </L.Modal>
         </L.Div>
         

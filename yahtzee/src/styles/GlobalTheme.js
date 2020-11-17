@@ -28,5 +28,22 @@ export const abutton = `
     &:hover{
         background: #F3CC90;
     }
+`
 
+export const userForm = `
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    width: 75%;
+    justify-content: space-around;
+    align-items: center;
+
+    & input {
+        font-family: ${theme.primaryFont};
+        border: 2px solid ${theme.light};
+        border-radius: 4px;
+        width: 60%;
+        height: 25px;
+
+    }
 `

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme, abutton } from "./GlobalTheme";
+import { theme, abutton, userForm } from "./GlobalTheme";
 
 export const Div = styled.div`
     width: 100vw;
@@ -31,15 +31,38 @@ export const Modal = styled.div`
     border-radius: 4px;
     background: ${theme.offWhite};
     box-shadow: 0 0 3px ${theme.light};
-    & a {
+    font-family: ${theme.primaryFont};
+    & .landing{
         ${abutton}
     }
     & h1 {
         color: ${theme.primary};
     }
+    & p {
+        margin: 4px;
+    }
+    & .error {
+        color: ${theme.danger};
+    }
 `
 
 export const Button = styled.div`
     ${abutton}
-    
+`
+
+export const Form = styled.form`
+    ${userForm}
+`
+export const SButton = styled.button`
+    font-family: ${theme.primaryFont};
+    border: 2px solid ${theme.light};
+    border-radius: 4px;
+    background: ${theme.primary};
+    cursor: pointer;
+    color: ${theme.offWhite};
+    height: 35px;
+    width: 60%;
+    &:hover {
+        background: #419834;
+    }
 `

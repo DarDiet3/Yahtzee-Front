@@ -1,17 +1,18 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { loginUser } from "../services/api_helper";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import { setCurrentUser } from "../features/gameMetaDataSlice";
 
 import * as L from "../styles/LandingPageStyles";
+import * as H from "../styles/GeneralStyles";
 
 
 const LoginForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const [error, setError] = useState(false);
     function loginReducer(state, action) {
         switch (action.type) {
             case "USERNAME_CHANGED":
@@ -26,8 +27,13 @@ const LoginForm = () => {
     const HandleLogin = async (e, loginData) => {
         e.preventDefault();
         const currentUser = await loginUser(loginData);
-        dispatch(setCurrentUser(currentUser));
-        history.push("/") 
+        if(currentUser === "ERROR: Incorrect Username/Password") {
+            setError(true)
+        } else {
+            dispatch(setCurrentUser(currentUser));
+            history.push("/") 
+        }
+        
     }
     
     const [enterUser, setEnterUser] = useReducer(loginReducer, {
@@ -38,8 +44,8 @@ const LoginForm = () => {
     return(
         <L.Div>
             <L.Modal>
-                <h1>Welcome back!</h1>
-                <form onSubmit={(e) => HandleLogin(e, enterUser)}>
+                <H.H1>Welcome back!</H.H1>
+                <L.Form onSubmit={(e) => HandleLogin(e, enterUser)}>
                     <input
                         type="text"
                         name="username"
@@ -54,8 +60,10 @@ const LoginForm = () => {
                         onChange={e => setEnterUser({type: "PASSWORD_CHANGED", payload: e.target.value})}
                         placeholder="Password"
                     />
-                    <input type="submit" value="Login" />
-                </form>
+                    {error ? <p className={"error"}>Incorrect Username/Password</p> : <p></p> }
+                    <L.SButton type="submit">Login</L.SButton>
+                    <p>Not playing yet? <Link to="/signup">Sign Up</Link></p>
+                </L.Form>
             </L.Modal>
         </L.Div>
     )

@@ -29,8 +29,8 @@ const LandingPage = () => {
             <L.Div>
                 <L.Modal>
                     <H.H1>Welcome to Settlers of Deere!</H.H1>
-                    <Link to="/signup">Sign Up</Link>
-                    <Link to="/login">Log In</Link>
+                    <Link to="/signup" className={"landing"}>Sign Up</Link>
+                    <Link to="/login" className={"landing"}>Log In</Link>
                     <L.Button onClick={() => signInGuest()}>
                         Continue as Guest
                     </L.Button>
