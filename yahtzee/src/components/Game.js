@@ -8,7 +8,7 @@ import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList 
 import { setDice, setRoadList, setSettlementList, setCityList, setKnightList, resetBoard  } from "../features/gameBoardDataSlice";
 
 import { diceRolledList, roundPoints, totalPoints, building, buildCounts, gameMetaData } from "../features/gameMetaDataSlice";
-import { addRoll, addRoundPoints, addBuildCount, resetStats, setBuild  } from "../features/gameMetaDataSlice";
+import { addRoll, addRoundPoints, addBuildCount, resetStats, setBuild, setGameComplete  } from "../features/gameMetaDataSlice";
 import { addData } from "../services/api_helper";
 
 
@@ -35,7 +35,7 @@ const Game = () => {
     const total = useSelector(totalPoints);
     const buildState = useSelector(building);
     const gameData = useSelector(gameMetaData);
-    const [roundCount, setRoundCount] = useState(1);
+    const [roundCount, setRoundCount] = useState(12);
     const [gameActive, setGameActive] = useState(true);
     const [sScoreBoard, setSScoreBoard] = useState(scoreBoard);
     
@@ -65,7 +65,6 @@ const Game = () => {
      *      Update Leader Board (high Score)
      */
     const handleNewGame = () => {
-        addData(gameData);
         dispatch(resetStats());
         dispatch(resetBoard());
         setGameActive(true);
@@ -77,7 +76,8 @@ const Game = () => {
          dispatch(addRoundPoints({list:sScoreBoard, round: roundCount}));
          setRoundCount(roundCount + 1);
          if(roundCount === 15){
-            setGameActive(false)
+            setGameActive(false);
+            addData(gameData);
          }
          let diceCopy = JSON.parse(JSON.stringify(dice));
          diceCopy.map(die => {

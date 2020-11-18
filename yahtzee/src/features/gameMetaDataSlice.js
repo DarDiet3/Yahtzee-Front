@@ -112,7 +112,8 @@ export const gameMetaDataSlice = createSlice({
             sheep: 0,
             brick: 0,
             wood: 0
-        }
+        },
+        gameComplete: "true"
     },
     reducers: {
         setCurrentUser: (state, action) => {
@@ -236,11 +237,15 @@ export const gameMetaDataSlice = createSlice({
                 brick: 0,
                 wood: 0
             }
+        },
+        setGameComplete: (state, action) => {
+            console.log(action.payload)
+            state.gameComplete = action.payload;
         }
     }
 })
 
-export const { setCurrentUser, addRoll, addRoundPoints, addTrade, setBuild, addBuildCount, setRoundPoints, addRound, resetStats } = gameMetaDataSlice.actions;
+export const { setCurrentUser, addRoll, addRoundPoints, addTrade, setBuild, addBuildCount, setRoundPoints, addRound, resetStats, setGameComplete } = gameMetaDataSlice.actions;
 
 export const currentUser = state => state.gameMetaData.currentUser;
 export const diceRolledList = state => state.gameMetaData.diceRolled;
