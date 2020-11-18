@@ -1,5 +1,5 @@
-# Settlers_of_Deere 
-## SEI Capstone Project
+# Settlers of Deere - Dice Edition 
+SEI Capstone Project
 
 ## Description:
 A John Deere twist on the popular Settlers of Catan Game. Users will be able to join games with other users, start games with their friends, and unlock new features the more they play!
