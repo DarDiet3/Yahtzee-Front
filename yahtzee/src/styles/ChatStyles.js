@@ -9,17 +9,17 @@ export const ChatDiv = styled.div`
     display: flex;
     flex-direction: column;
     box-shadow: inset 0 0 5px ${theme.light};
-    overflow: scroll;
 `
 
 export const Chats = styled.div`
     box-sizing: border-box;
-    height: 85%;
+    max-height: 85%;
     width: 100%;
     flex: 1;
     background: ${theme.offWhite};
     font-family: ${theme.primaryFont};
     box-shadow: inset 0 0 5px ${theme.light};
+    overflow: scroll;
 
     & #messages { 
         list-style-type: none; 
