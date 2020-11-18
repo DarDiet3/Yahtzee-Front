@@ -14,6 +14,7 @@ const Leaderboard = () => {
         }
         fetchData();
     }, [])
+    
     const [Leaderboard, setLeaderBoard] = useState([{
         User: { profileImg: "/images/profile/red_dice.jpeg" },
         createdAt: "2020-11-17T16:09:23.202Z",
@@ -23,6 +24,7 @@ const Leaderboard = () => {
         userId: 1,
         username: "guest",
     }]);
+
 
     return (
         <D.Div>

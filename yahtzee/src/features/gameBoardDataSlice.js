@@ -435,7 +435,7 @@ export const gameBoardDataSlice = createSlice({
                 {
                     id: 1, 
                     built: false,
-                    canBuild: false,
+                    canBuild: true,
                     points: 7
                 },
                 {

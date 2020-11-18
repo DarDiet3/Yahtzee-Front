@@ -21,6 +21,7 @@ export const MainDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: lemonchiffon;
 `
 export const H2 = styled.h2`
     font-family: ${theme.primaryFont};
@@ -208,5 +209,10 @@ export const BuildForm = styled.form`
         margin: 0;
         margin-top: 5px;
         text-align: center;
+    }
+    & fieldset {
+        background: ${theme.light};
+        color: ${theme.offWhite};
+        border: solid ${theme.light} 4px;
     }
 `

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import classNames from "classnames";
 import Hexagon from "react-hexagon";
 
@@ -8,7 +7,7 @@ import { hexList, roadsList, citiesList, settlementsList, knightsList, diceList 
 import { setDice, setRoadList, setSettlementList, setCityList, setKnightList, resetBoard  } from "../features/gameBoardDataSlice";
 
 import { diceRolledList, roundPoints, totalPoints, building, buildCounts, gameMetaData } from "../features/gameMetaDataSlice";
-import { addRoll, addRoundPoints, addBuildCount, resetStats, setBuild, setGameComplete  } from "../features/gameMetaDataSlice";
+import { addRoll, addRoundPoints, addBuildCount, resetStats, setBuild } from "../features/gameMetaDataSlice";
 import { addData } from "../services/api_helper";
 
 
@@ -60,13 +59,11 @@ const Game = () => {
     // all initial states will take care of this on initial mount in to room 
 
     //===== New Game ====== <- Call this when game is complete
-    /**
-     * X Send game data to server for user
-     *      Update Leader Board (high Score)
-     */
+
     const handleNewGame = () => {
         dispatch(resetStats());
         dispatch(resetBoard());
+        setSScoreBoard(scoreBoard);
         setGameActive(true);
         setRoundCount(1);
     }
@@ -201,18 +198,19 @@ const Game = () => {
                         diceCopy[idx2].available = false;
                         brickId.unshift();
                         woodId.unshift();
+                        setSScoreBoard(roundScore);
+                        dispatch(addBuildCount("road"));
+                        dispatch(setRoadList(roadList));
+                        dispatch(setDice(diceCopy));
+                        dispatch(setBuild(true))
+                        getIndexes();
                     } catch (e) {
                         alert("Sorry, you don't have enough resources to build a road")
                         break;
                     }
                     
 
-                    setSScoreBoard(roundScore);
-                    dispatch(addBuildCount("road"));
-                    dispatch(setRoadList(roadList));
-                    dispatch(setDice(diceCopy));
-                    dispatch(setBuild(true))
-                    getIndexes();
+                    
                     break;
                 case "settlement":
                     roundScore[roundCount - 1].points += item.points;
@@ -254,16 +252,17 @@ const Game = () => {
                     woodId.unshift();
                     sheepId.unshift();
                     wheatId.unshift();
-                    } catch (e) {
-                        alert("Sorry, you don't have enough resources to build a settlement")
-                        break;
-                    }
-                    dispatch(addRoundPoints({list:roundScore, round: roundCount}));
+                    setSScoreBoard(roundScore);
                     dispatch(addBuildCount("settlement"));
                     dispatch(setSettlementList(settlementList));
                     dispatch(setDice(diceCopy));
                     dispatch(setBuild(true));
                     getIndexes();
+                    } catch (e) {
+                        alert("Sorry, you don't have enough resources to build a settlement")
+                        break;
+                    }
+                    
                     break;
                 case "city":
                     roundScore[roundCount - 1].points += item.points;
@@ -296,16 +295,17 @@ const Game = () => {
                     diceCopy[idx3].available = false;
                     diceCopy[idx4].available = false;
                     diceCopy[idx5].available = false;
-                    } catch (e) {
-                        alert("Sorry, you don't have enough resources to build a city")
-                        break;
-                    }
                     setSScoreBoard(roundScore);
                     dispatch(addBuildCount("city"));
                     dispatch(setCityList(cityList));
                     dispatch(setDice(diceCopy));
                     dispatch(setBuild(true));
                     getIndexes();
+                    } catch (e) {
+                        alert("Sorry, you don't have enough resources to build a city")
+                        break;
+                    }
+                    
                     break;
                 case "knight":
                     roundScore[roundCount - 1].points += item.points;
@@ -342,16 +342,17 @@ const Game = () => {
                     rockId.unshift();
                     sheepId.unshift();
                     wheatId.unshift();
-                    } catch (e) {
-                        alert("Sorry, you don't have enough resources to build a knight")
-                        break;
-                    }
                     setSScoreBoard(roundScore);
                     dispatch(addBuildCount("knight"));
                     dispatch(setKnightList(knightList));
                     dispatch(setDice(diceCopy));
                     dispatch(setBuild(true));
                     getIndexes();
+                    } catch (e) {
+                        alert("Sorry, you don't have enough resources to build a knight")
+                        break;
+                    }
+                    
                     break;
                 case "joker":
                     break;
@@ -391,6 +392,7 @@ const Game = () => {
                             )
                         })}
                         </G.Dice>
+                        <p>Select dice to set aside before rolling again!</p>
                         <G.TurnControl>
                             <G.TurnButton onClick={() => roll()} disabled={rollCount === 3 ? "true" : ""}>Roll</G.TurnButton>
                             <G.TurnButton onClick={() => toggleBuild()} disabled={rollCount === 0 ? "true" : ""}>Let's Build</G.TurnButton>

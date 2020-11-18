@@ -110,7 +110,7 @@ const Trade = () => {
                         {resources.map((resource, index) => {
                             return(
                                 <div key={index}>
-                                    <label for={`select_${resource.resource}`}  >
+                                    <label htmlFor={`select_${resource.resource}`}  >
                                         <input 
                                         id={`select_${resource.resource}`} 
                                         name={`${resource.resource}`} 

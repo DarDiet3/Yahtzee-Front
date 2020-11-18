@@ -149,6 +149,10 @@ export const DiceHolder = styled.div`
     justify-content: center;
     background: rgba(255, 215, 140, .5);
     border-radius: 4px;
+    font-family: ${theme. primaryFont};
+    & p {
+        margin: 0;
+    }
 `
 export const Dice = styled.div`
     display: flex;

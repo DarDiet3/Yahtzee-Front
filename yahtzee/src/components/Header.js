@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as H from "../styles/GeneralStyles";
 import { Link } from "react-router-dom";
-import { currentUser, setCurrentUser } from "../features/gameMetaDataSlice";
-
+import { currentUser, setCurrentUser, resetStats } from "../features/gameMetaDataSlice";
+import { resetBoard } from "../features/gameBoardDataSlice";
 
 
 const Header = () => {
@@ -16,6 +16,8 @@ const Header = () => {
         localStorage.removeItem('authToken');
         localStorage.removeItem("currentUserId");
         dispatch(setCurrentUser(""));
+        dispatch(resetStats());
+        dispatch(resetBoard());
         setTimeout(() => {
           history.push("/")
       }, 500)
