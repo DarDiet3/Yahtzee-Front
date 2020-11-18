@@ -454,6 +454,9 @@ export const ScoreTrackGrid = styled.div`
         font-size: 36px;
         font-weight: 100;
     }
+    & .activeTurn {
+        box-shadow: inset 0 0 5px ${theme.danger};
+    }
 `
 export const GridScore = styled.div`
     height: 98%;

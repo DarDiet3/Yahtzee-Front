@@ -409,7 +409,8 @@ const Game = () => {
                 <G.CenterBar>
                     <G.ScoreTrackGrid>
                         {scoreBoard.map((round, index) => {
-                            const classList = classNames(`score_${round.round}`, "score");
+                            const activeTurn = roundCount === round.round ? "activeTurn" : "";
+                            const classList = classNames(`score_${round.round}`, "score", `${activeTurn}`);
                             return <G.GridScore key={index} className={classList}>
                                 {round.points}
                             </G.GridScore>
