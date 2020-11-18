@@ -13,6 +13,7 @@ import Leaderboard from "../components/Leaderboard";
 
 const Lobby = () => {
     const [mainView, setMainView] = useState("");
+
     return(
         <div>
             <Header/>
@@ -37,6 +38,9 @@ const Lobby = () => {
                         >
                             Profile
                         </B.NavButton>
+                        <B.NavButton>
+                            <a href="/ref/catan_dg_rules_012508.pdf" target="_blank" className={"pdf"}>How to Play</a>
+                        </B.NavButton>
                     </B.NavBar>
                         <B.MainContent>
                         {mainView === "game" ? 
@@ -49,11 +53,7 @@ const Lobby = () => {
                             <Profile />
                             :
                             <B.Waiting>
-                                <Link to="/game">New Game</Link>
-                                <Link to="/profile">My Stats</Link>
-                                <Link to="/stats">All Stats</Link>
-                                <button onClick={() => getScore(5)}>Top 5</button>
-                                <Link to="/chat">Chat</Link>
+                                <button onClick={() => setMainView("game")}>New Game</button>
                             </B.Waiting>
                         }
                         </B.MainContent>

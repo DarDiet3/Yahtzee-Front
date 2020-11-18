@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme, abutton } from "./GlobalTheme";
+import { theme, abutton, userForm } from "./GlobalTheme";
 
 export const BodyContainer = styled.div`
     width: 100%;
@@ -134,4 +134,46 @@ export const Modal = styled.div`
         text-decoration: none;
         color: black;
     }
+`
+export const NavBar = styled.div`
+    width: 99.9%;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+    background: ${theme.light};
+`
+export const NavButton = styled.button`
+    ${abutton}
+`
+export const Form = styled.form`
+    ${userForm}
+`
+export const FormEnter = styled.input`
+    font-family: ${theme.primaryFont};
+    border: 2px solid ${theme.light};
+    border-radius: 4px;
+    background: ${theme.primary};
+    cursor: pointer;
+    color: ${theme.offWhite};
+    height: 35px;
+    width: 60%;
+    &:hover {
+        background: #419834;
+    }
+`
+export const FormDelete = styled.button`
+    font-family: ${theme.primaryFont};
+    border: 2px solid ${theme.light};
+    border-radius: 4px;
+    cursor: pointer;
+    color: ${theme.offWhite};
+    height: 35px;
+    width: 60%;
+    &:hover {
+        background: #419834;
+    }
+    background: ${theme.danger}
 `

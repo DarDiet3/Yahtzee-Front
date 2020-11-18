@@ -2,8 +2,8 @@ import styled from "styled-components";
 import {theme, abutton} from "./GlobalTheme";
 
 export const BodyContainer = styled.div`
-    width: calc(100vw - 30px);
-    height: 85vh;
+    width: calc(100vw - 20px);
+    height: 87vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -54,7 +54,7 @@ export const Waiting = styled.div`
         background-size: cover;
         filter: grayscale(80%);
       };
-    & a {
+    & button {
         z-index: 1;
         ${abutton}
     }
@@ -102,6 +102,13 @@ export const NavBar = styled.div`
         color: ${theme.light};
         align-self: flex-end;
         border-right: solid 2px ${theme.light};
+    }
+    & .pdf {
+        border: none;
+        height: 15px;
+        width: 95px;
+        margin: 0;
+        padding: 1px;
     }
 `
 

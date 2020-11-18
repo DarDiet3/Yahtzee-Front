@@ -9,7 +9,8 @@ import { deleteUser, editProfile } from "../services/api_helper";
 
 
 import * as L from "../styles/LandingPageStyles";
-import * as P from "../styles/ProfileStyles";
+import * as E from "../styles/EditStyles";
+import * as H from "../styles/GeneralStyles";
 import Header from "./Header"
 
 const EditProfile = () => {
@@ -35,7 +36,7 @@ const EditProfile = () => {
         const currentUser = await editProfile(userData);
         console.log(currentUser)
         dispatch(setCurrentUser(currentUser.userData));
-        history.push("/profile")      
+        history.push("/")      
         //UPDATE SWITCH STAMENT FOR THE TYPE
     }
 
@@ -54,27 +55,25 @@ const EditProfile = () => {
     const [view, setView] = useState("")
 
     return (
-        <P.BodyContainer>
+        <E.BodyContainer>
             <Header />
-            <P.Div>
-                <P.BioBox>
-                    <P.ProfPic src={activeUser.profileImg} />
+            <E.Div>
+                <E.BioBox>
+                    <E.ProfPic src={activeUser.profileImg} />
                     <h1>{activeUser.username}</h1>
-                </P.BioBox>
-                <P.SubBox>
-
-                    <div>
-                        <h1>Edit Account</h1>
-                        <nav>
-                            <button onClick={() => setView("username")}>Username</button>
-                            <button onClick={() => setView("password")}>Password</button>
-                            <button onClick={() => setView("profilePic")}>Profile Picture</button>
-                            <button onClick={() => setView("delete")}>Delete Account</button>
-                        </nav>
-                    </div>
+                </E.BioBox>
+                <E.SubBox>
+                    <E.StatsBox>
+                        <H.H1>Edit Account</H.H1>
+                        <E.NavBar>
+                            <E.NavButton onClick={() => setView("username")}>Username</E.NavButton>
+                            <E.NavButton onClick={() => setView("password")}>Password</E.NavButton>
+                            <E.NavButton onClick={() => setView("profilePic")}>Profile Picture</E.NavButton>
+                            <E.NavButton onClick={() => setView("delete")}>Delete Account</E.NavButton>
+                        </E.NavBar>
                     <L.Modal>
                         {view === "username" ?
-                            <form onSubmit={(e) => HandleUpdate(e, enterUser, "username")}>
+                            <E.Form onSubmit={(e) => HandleUpdate(e, enterUser, "username")}>
                                 <input
                                     type="text"
                                     name="username"
@@ -82,11 +81,11 @@ const EditProfile = () => {
                                     onChange={e => setEnterUser({ type: "USERNAME_CHANGED", payload: e.target.value })}
                                     placeholder="New Username"
                                 />
-                                <input type="submit" value="Update Username" />
-                            </form>
+                                <E.FormEnter type="submit" value="Update Username" />
+                            </E.Form>
                         :
                         view === "password" ?
-                                <form onSubmit={(e) => HandleUpdate(e, enterUser, "password")}>
+                                <E.Form onSubmit={(e) => HandleUpdate(e, enterUser, "password")}>
                                     <input
                                         type="password"
                                         name="password"
@@ -94,28 +93,29 @@ const EditProfile = () => {
                                         onChange={e => setEnterUser({ type: "PASSWORD_CHANGED", payload: e.target.value })}
                                         placeholder="New Password"
                                     />
-                                    <input type="submit" value="Update Password" />
-                                </form>
+                                    <E.FormEnter type="submit" value="Update Password" />
+                                </E.Form>
                         :
                         view === "profilePic" ?
-                            <form onSubmit={(e) => HandleUpdate(e, enterUser, "profilePic")}>
+                            <E.Form onSubmit={(e) => HandleUpdate(e, enterUser, "profilePic")}>
                                     <h2>Select your new Profile Picture</h2>
-                                    <h3>COMING SOON....DON'T FORGET TO CHANGE</h3>
-                                    <input type="submit" value="Update Picture" />
-                                </form>
+                                    <h3>COMING SOON</h3>
+                                    <E.FormEnter type="submit" value="Update Picture" />
+                                </E.Form>
                         :
                         view === "delete" ?
                             <div>
                                 <h2>Are you sure you want to delete your account?</h2>
-                                <button onClick={(e) => HandleDeleteUser(e, activeUser)}>Delete Account</button>
+                                <E.FormDelete onClick={(e) => HandleDeleteUser(e, activeUser)}>Delete Account</E.FormDelete>
                             </div>
                         :
                             <div></div>
                         }
                     </L.Modal>
-                </P.SubBox>
-            </P.Div>
-        </P.BodyContainer>
+                    </E.StatsBox>
+                </E.SubBox>
+            </E.Div>
+        </E.BodyContainer>
     )
 }
 

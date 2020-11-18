@@ -15,10 +15,7 @@ import { getUserData } from "../services/api_helper";
 const Profile = () => {
     const activeUser = useSelector(currentUser);
     const [profileData, setProfileData] = useState([])
-    const [gameStats, setGameStats] = useState({});
-    console.log(profileData)
-
-    const defaultData = {
+    const [gameStats, setGameStats] = useState({
         completionPCT: 0,
         gamesFinished: 0,
         gamesStarted: 0,
@@ -43,7 +40,9 @@ const Profile = () => {
             wheat: 0,
             wood: 0
         }
-    }
+    });
+    console.log(profileData)
+
     useEffect(() => {
         async function fetchData() {
             let data = await getUserData(activeUser.id);
@@ -113,7 +112,7 @@ const Profile = () => {
             ppg = 0;
         } else {
             completionPCT = (parseFloat(gamesFinished) / parseFloat(gamesStarted)) * 100;
-            ppg = (parseFloat(totalPoints) / parseFloat(gamesFinished)) * 100;
+            ppg = (parseFloat(totalPoints) / parseFloat(gamesFinished));
         }
 
         let gameStats = {
@@ -170,13 +169,6 @@ const Profile = () => {
                             </P.StatLine>
                             <P.StatLine className={"list"}>
                                 Trades Made: {gameStats.totals.trades}
-                                <ul>
-                                    <li>Wheat: {gameStats.totals.tradedwheat}</li>
-                                    <li>Sheep: {gameStats.totals.tradedsheep}</li>
-                                    <li>Brick: {gameStats.totals.tradedbrick}</li>
-                                    <li>Wood: {gameStats.totals.tradedwood}</li>
-                                    <li>Rock: {gameStats.totals.tradedrock}</li>
-                                </ul>
                             </P.StatLine>
                             <P.StatLine className={"list"}>
                                 Builds:

@@ -497,7 +497,7 @@ export const Button = styled.div`
 export const TurnButton = styled.button`
     font-family: ${theme.primaryFont};
     height: 30px;
-    width: 18%;
+    width: 19%;
     border: solid ${theme.light} 4px;
     border-radius: 4px;
     cursor: pointer;

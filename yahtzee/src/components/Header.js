@@ -28,7 +28,6 @@ const Header = () => {
             </H.TitleHolder>
             <H.NavBar>
                 <Link to="/"><H.NavButton>Lobby</H.NavButton></Link>
-                <Link to="/profile"><H.NavButton>Profile</H.NavButton></Link> 
                 <H.NavButton onClick={() => HandleLogout()}>
                     Log Out
                 </H.NavButton>

@@ -264,7 +264,7 @@ const Build = () => {
                     <fieldset id="buildable">
                         {buildables.map((type, index) => {
                             const canBuild = hasMaterial(type);
-                            return <label for={`build_${type}`}>
+                            return <label htmlFor={`build_${type}`} key={index}>
                                 <input
                                     type="radio"
                                     name="buildable"

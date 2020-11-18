@@ -35,7 +35,7 @@ const Game = () => {
     const total = useSelector(totalPoints);
     const buildState = useSelector(building);
     const gameData = useSelector(gameMetaData);
-    const [roundCount, setRoundCount] = useState(12);
+    const [roundCount, setRoundCount] = useState(1);
     const [gameActive, setGameActive] = useState(true);
     const [sScoreBoard, setSScoreBoard] = useState(scoreBoard);
     
@@ -144,18 +144,23 @@ const Game = () => {
     }, [dice])
 
     //===== Build ======
+    const getIndexes = () => {
+        let roundScore = JSON.parse(JSON.stringify(sScoreBoard));
+        let roadList = JSON.parse(JSON.stringify(roads));
+        let settlementList = JSON.parse(JSON.stringify(settlements));
+        let cityList = JSON.parse(JSON.stringify(cities));
+        let knightList = JSON.parse(JSON.stringify(knights));
+        let diceCopy = JSON.parse(JSON.stringify(diceData));
+        
+        return [roundScore, roadList, settlementList, cityList, knightList, diceCopy]
+    }
     const handleBuild = (e, type, item) => {
         e.preventDefault();
         
         console.log("here")
         console.log(item)
         if(item.canBuild && actionView === "build" && buildState.toLowerCase() === type){
-            let roundScore = JSON.parse(JSON.stringify(sScoreBoard));
-            let roadList = JSON.parse(JSON.stringify(roads));
-            let settlementList = JSON.parse(JSON.stringify(settlements));
-            let cityList = JSON.parse(JSON.stringify(cities));
-            let knightList = JSON.parse(JSON.stringify(knights));
-            let diceCopy = JSON.parse(JSON.stringify(diceData));
+            let [roundScore, roadList, settlementList, cityList, knightList, diceCopy] = getIndexes()
             
             let brickId = [];
             let wheatId = [];
@@ -193,19 +198,25 @@ const Game = () => {
                             }
                         }
                     })
-
-                    idx1 = brickId[0] - 1;
-                    idx2 = woodId[0] - 1;
-                    diceCopy[idx1].available = false;
-                    diceCopy[idx2].available = false;
-                    brickId.unshift();
-                    woodId.unshift();
+                    try {
+                        idx1 = brickId[0] - 1;
+                        idx2 = woodId[0] - 1;
+                        diceCopy[idx1].available = false;
+                        diceCopy[idx2].available = false;
+                        brickId.unshift();
+                        woodId.unshift();
+                    } catch (e) {
+                        alert("Sorry, you don't have enough resources to build a road")
+                        break;
+                    }
+                    
 
                     setSScoreBoard(roundScore);
                     dispatch(addBuildCount("road"));
                     dispatch(setRoadList(roadList));
                     dispatch(setDice(diceCopy));
                     dispatch(setBuild(true))
+                    getIndexes();
                     break;
                 case "settlement":
                     console.log(roundScore)
@@ -238,7 +249,7 @@ const Game = () => {
                     })
 
                     console.log(brickId)
-
+                    try{
                     idx1 = brickId[0] - 1;
                     idx2 = woodId[0] - 1;
                     idx3 = sheepId[0] - 1;
@@ -251,12 +262,16 @@ const Game = () => {
                     woodId.unshift();
                     sheepId.unshift();
                     wheatId.unshift();
-                    
+                    } catch (e) {
+                        alert("Sorry, you don't have enough resources to build a settlement")
+                        break;
+                    }
                     dispatch(addRoundPoints({list:roundScore, round: roundCount}));
                     dispatch(addBuildCount("settlement"));
                     dispatch(setSettlementList(settlementList));
                     dispatch(setDice(diceCopy));
                     dispatch(setBuild(true));
+                    getIndexes();
                     break;
                 case "city":
                     roundScore[roundCount - 1].points += item.points;
@@ -278,7 +293,7 @@ const Game = () => {
                             }
                         }
                     })
-
+                    try{
                     idx1 = rockId[0] - 1;
                     idx2 = rockId[1] - 1;
                     idx3 = rockId[2] - 1;
@@ -289,12 +304,16 @@ const Game = () => {
                     diceCopy[idx3].available = false;
                     diceCopy[idx4].available = false;
                     diceCopy[idx5].available = false;
-                    
+                    } catch (e) {
+                        alert("Sorry, you don't have enough resources to build a city")
+                        break;
+                    }
                     setSScoreBoard(roundScore);
                     dispatch(addBuildCount("city"));
                     dispatch(setCityList(cityList));
                     dispatch(setDice(diceCopy));
                     dispatch(setBuild(true));
+                    getIndexes();
                     break;
                 case "knight":
                     roundScore[roundCount - 1].points += item.points;
@@ -321,6 +340,7 @@ const Game = () => {
                         }
                     })
 
+                    try{
                     idx1 = rockId[0] - 1;
                     idx2 = sheepId[0] - 1;
                     idx3 = wheatId[0] - 1;
@@ -330,12 +350,16 @@ const Game = () => {
                     rockId.unshift();
                     sheepId.unshift();
                     wheatId.unshift();
-                    
+                    } catch (e) {
+                        alert("Sorry, you don't have enough resources to build a knight")
+                        break;
+                    }
                     setSScoreBoard(roundScore);
                     dispatch(addBuildCount("knight"));
                     dispatch(setKnightList(knightList));
                     dispatch(setDice(diceCopy));
                     dispatch(setBuild(true));
+                    getIndexes();
                     break;
                 case "joker":
                     break;
