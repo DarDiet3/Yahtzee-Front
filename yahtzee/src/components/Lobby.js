@@ -40,7 +40,7 @@ const Lobby = () => {
                             Profile
                         </B.NavButton>
                         <B.NavButton>
-                            <a href="/ref/catan_dg_rules_012508.pdf" target="_blank" className={"pdf"}>How to Play</a>
+                            <a href="https://www.catan.com/game/catan-dice-game-clamshell-edition#downloads" target="_blank" className={"pdf"}>How to Play</a>
                         </B.NavButton>
                     </B.NavBar>
                         <B.MainContent>
