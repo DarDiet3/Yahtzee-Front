@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { theme } from "./GlobalTheme";
 
 export const Header = styled.header`
-    height: 10vh;
-    width: 100vw;
+    height: 8vh;
+    width: calc(100vw - 10);
     margin: 0;
     background: ${theme.primary};
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-right: 10px;
 `
 export const TitleHolder = styled.div`
     width: 30%;
@@ -64,4 +65,31 @@ export const H1 = styled.h1`
 export const BodyContainer = styled.div`
     width: 100vw;
     height: 85vh;
+`
+export const Footer = styled.footer`
+    height: 5vh;
+    width: 100vw;
+    margin: 0;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`
+export const FootImg = styled.img`
+    height: 4vh;
+    width: 4vh;
+`
+export const FootDiv = styled.div`
+    width: 30%;
+    font-family: ${theme.primaryFont};
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    & p {
+        color: ${theme.offWhite};
+    }
+    &a, a:visited {
+        color: ${theme.offWhite};
+    }
+    
 `

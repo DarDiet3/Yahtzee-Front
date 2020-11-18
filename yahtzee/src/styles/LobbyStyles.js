@@ -3,7 +3,7 @@ import {theme, abutton} from "./GlobalTheme";
 
 export const BodyContainer = styled.div`
     width: calc(100vw - 20px);
-    height: 87vh;
+    height: 85vh;
     display: flex;
     flex-direction: row;
     align-items: center;

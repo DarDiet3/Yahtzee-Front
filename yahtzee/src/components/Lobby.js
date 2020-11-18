@@ -10,6 +10,7 @@ import Game from "../components/Game";
 import Profile from "../components/Profile";
 import Chat from "./Chat";
 import Leaderboard from "../components/Leaderboard";
+import Footer from "../components/Footer";
 
 const Lobby = () => {
     const [mainView, setMainView] = useState("");
@@ -66,6 +67,7 @@ const Lobby = () => {
                     </B.MainContent>
                 </B.ChatContainer>
             </B.BodyContainer>
+            <Footer/>
         </div>
        
     )
