@@ -311,7 +311,6 @@ export const gameBoardDataSlice = createSlice({
     },
     reducers: {
         setDice: (state, action) => {
-            console.log(action.payload)
             state.resourceDice = action.payload;
         },
         setRoadList: (state, action) => {

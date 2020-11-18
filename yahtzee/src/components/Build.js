@@ -135,7 +135,6 @@ const Build = () => {
             }
         })
         dispatch(setRoadList(roadList));
-        console.log(roadList)
     }
 
     const settlementBuildCheck = () => {
@@ -176,7 +175,6 @@ const Build = () => {
             })
         }
         dispatch(setSettlementList(settlementList));
-        console.log(settlementList)
     }
 
     const cityBuildCheck = () => {

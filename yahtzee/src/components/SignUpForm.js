@@ -14,7 +14,6 @@ const SignupForm = () => {
     const history = useHistory();
 
     function loginReducer(state, action) {
-        console.log(action.payload)
         switch (action.type) {
             case "NAME_CHANGED":
                 return {...state, name: action.payload};
@@ -41,7 +40,6 @@ const SignupForm = () => {
     const HandleSignup = async(e, signupData) => {
         e.preventDefault();
         const currentUser = await signupUser(signupData);
-        console.log(currentUser)
         dispatch(setCurrentUser(currentUser));
         history.push("/") //TODO: Redirect to profile
     }

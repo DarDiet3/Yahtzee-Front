@@ -24,7 +24,6 @@ const Leaderboard = () => {
         username: "guest",
     }]);
 
-    console.log(Leaderboard)
     return (
         <D.Div>
             <D.ModDiv>

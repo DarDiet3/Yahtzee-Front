@@ -10,7 +10,6 @@ const api = axios.create({
 
 export const signupUser = async (signupData) => {
     const resp = await api.post("/auth/signup", signupData);
-    console.log(resp.data)
     localStorage.setItem('authToken', resp.data.token);
     localStorage.setItem("currentUserId", JSON.stringify(resp.data.user));
     api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`;
@@ -48,7 +47,6 @@ export const addData = async (gameData) => {
 //======== SCORE BOARD =======
 export const getScore = async(number) => {
     const resp = await api.get(`/leaderboard/${number}`)
-    console.log(resp.data);
     return resp.data;
 }
 
@@ -64,7 +62,6 @@ export const editProfile = async(userData) => {
 }
 
 export const deleteUser = async(user) => {
-    console.log(user)
     await api.delete(`/user/delete/${user.id}`);
     
 }

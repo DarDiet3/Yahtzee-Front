@@ -34,7 +34,6 @@ const EditProfile = () => {
     const HandleUpdate = async (e, userData, type) => {
         e.preventDefault();
         const currentUser = await editProfile(userData);
-        console.log(currentUser)
         dispatch(setCurrentUser(currentUser.userData));
         history.push("/")      
         //UPDATE SWITCH STAMENT FOR THE TYPE

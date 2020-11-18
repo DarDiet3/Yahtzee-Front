@@ -19,7 +19,6 @@ const LandingPage = () => {
             name: "guest",
             id: 1
         };
-        console.log(currentUser)
         dispatch(setCurrentUser(currentUser));
         localStorage.setItem("currentUserId", JSON.stringify(currentUser));
         history.push("/")

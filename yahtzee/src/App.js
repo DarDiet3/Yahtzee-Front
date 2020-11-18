@@ -17,7 +17,6 @@ import { theme } from "./styles/GlobalTheme";
 
 function App() {
   const activeUser = useSelector(currentUser);
-  console.log(activeUser)
   return (
     <ThemeProvider theme={theme}>
       <div className="App">

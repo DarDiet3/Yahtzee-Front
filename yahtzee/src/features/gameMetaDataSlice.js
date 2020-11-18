@@ -123,7 +123,6 @@ export const gameMetaDataSlice = createSlice({
             state.diceRolled[action.payload] += 1;
         },
         addRoundPoints: (state, action) => {
-            console.log(action.payload)
             const round = action.payload.round;
             state.roundPoints = action.payload.list;
             state.totalPoints += action.payload.list[round - 1].points;
@@ -239,7 +238,6 @@ export const gameMetaDataSlice = createSlice({
             }
         },
         setGameComplete: (state, action) => {
-            console.log(action.payload)
             state.gameComplete = action.payload;
         }
     }

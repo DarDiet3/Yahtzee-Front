@@ -109,7 +109,6 @@ const Game = () => {
     
     const roll = () => {
         setRollCount(rollCount + 1);
-        console.log(rollCount)
         const dice1 = Math.floor(Math.random() * 6);
         const dice2 = Math.floor(Math.random() * 6);
         const dice3 = Math.floor(Math.random() * 6);
@@ -121,7 +120,6 @@ const Game = () => {
         
 
         let newList = JSON.parse(JSON.stringify(dice)); //https://stackoverflow.com/questions/42523881/how-to-clone-a-javascript-array-of-objects
-        console.log(dice)
         newList.map(die => {
             if(!die.locked && die.available){
                 die.resource = newDiceResource[die.id - 1]
@@ -157,8 +155,6 @@ const Game = () => {
     const handleBuild = (e, type, item) => {
         e.preventDefault();
         
-        console.log("here")
-        console.log(item)
         if(item.canBuild && actionView === "build" && buildState.toLowerCase() === type){
             let [roundScore, roadList, settlementList, cityList, knightList, diceCopy] = getIndexes()
             
@@ -219,9 +215,6 @@ const Game = () => {
                     getIndexes();
                     break;
                 case "settlement":
-                    console.log(roundScore)
-                    console.log(item)
-                    console.log(roundCount)
                     roundScore[roundCount - 1].points += item.points;
 
                     settlementList[item.id - 1].built = true;
@@ -248,7 +241,6 @@ const Game = () => {
                         }
                     })
 
-                    console.log(brickId)
                     try{
                     idx1 = brickId[0] - 1;
                     idx2 = woodId[0] - 1;

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Link, Route } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Header from "./Header";
-import EditProfile from "./EditProfile";
 import * as L from "../styles/LandingPageStyles";
 import * as P from "../styles/ProfileStyles";
 import * as H from "../styles/GeneralStyles";
-import * as D from "../styles/DataDisplayStyles";
 
-import { currentUser, setGameComplete } from "../features/gameMetaDataSlice";
+
+import { currentUser } from "../features/gameMetaDataSlice";
 import { getUserData } from "../services/api_helper";
 
 const Profile = () => {
@@ -41,7 +39,6 @@ const Profile = () => {
             wood: 0
         }
     });
-    console.log(profileData)
 
     useEffect(() => {
         async function fetchData() {
@@ -127,7 +124,7 @@ const Profile = () => {
 
         setGameStats(gameStats);
     }
-    console.log(gameStats)
+    
     return (
         activeUser.username === "guest" ?
             <L.Div>
