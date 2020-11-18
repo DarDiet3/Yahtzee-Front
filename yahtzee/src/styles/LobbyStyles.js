@@ -34,20 +34,26 @@ export const MainContent = styled.div`
     width: 100%;
     height: 100%;
     box-shadow: inset 0 0 5px ${theme.light};
+    position: relative;
 `
 export const Waiting = styled.div`
-    content: "";
     width: 100%; 
     height: 100%;
-    background-image: url("/images/fallFarm.jpg");
-    background-size: cover;
-    // filter: grayscale(80%);
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     box-shadow: inset 0 0 3px ${theme.light};
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-image: url("/images/fallFarm.jpg");
+        background-size: cover;
+        filter: grayscale(80%);
+      };
     & a {
         z-index: 1;
         ${abutton}

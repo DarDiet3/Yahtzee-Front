@@ -123,14 +123,7 @@ export const Board = styled.div`
         align-self: center;
     }
 `
-// export const Table = styled.div`
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: space-around;
-//     height: 99%;
-//     width: 100%;
-// `
+
 export const LeftBar = styled.div`
     width: 45%;
     height: 100%;
