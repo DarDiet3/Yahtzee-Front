@@ -41,7 +41,7 @@ const SignupForm = () => {
         e.preventDefault();
         const currentUser = await signupUser(signupData);
         dispatch(setCurrentUser(currentUser));
-        history.push("/") //TODO: Redirect to profile
+        history.push("/") 
     }
     
 

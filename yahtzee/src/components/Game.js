@@ -436,7 +436,7 @@ const Game = () => {
                                     hexProps={{className:`${hex.resource}`}}
                                     style={hexStyles}
                                     ></Hexagon>
-                                    // TODO: add token with matching image to the dice
+                                    
                             )
                         })}
                         {knights.map((knight, index) => {
