@@ -6,6 +6,7 @@ A John Deere twist on the popular Settlers of Catan Game. Users will be able to 
 
 ## Example:
 !["Game Play Page"](https://imgur.com/8Ifg81Y.png)
+
 ## Features / User Stories:
 1. As a new user, I can create a profile with a profile image.
 2. As a user, I can have an email associated with my profile in case I forget my password.
@@ -72,3 +73,16 @@ A John Deere twist on the popular Settlers of Catan Game. Users will be able to 
 * Chat with opponent in room only
 * Dive into the user data
 * Drag and Drop for rearrange
+
+### Fun Challenges
+- Reduction in scope halfway through project
+Originally bit off more than I could chew. Realize in refactoring the original code, the power of writing scaleable code.
+- Heroku deployment was a mess. 
+    In the recreation of my backend, followed steps that should have helped for easier deployment. Ended up needing different character cases for the columns and tables than the first deployment
+- Working through socket.io
+Was able to get the basic chat but ran into some time constraints for sending the data back and forth between the users.
+
+## Contribute
+- **Source Code:** https://github.com/DarDiet3/Yahtzee-Front
+- **Backend** https://github.com/DarDiet3/Yahtzee-back
+- **Issue Tracker** https://github.com/DarDiet3/Yahtzee-Front/issues
